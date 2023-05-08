@@ -1,0 +1,23 @@
+
+@import './assets/sass/app.scss';
+// @import '../node_modules/sweetalert2/src/sweetalert2.scss';
+// @import '@sweetalert2/theme-dark/dark.scss';
+// @import '@sweetalert2/theme-material-ui/material-ui.scss';
+@import 'animate.css';
+
+html,
+body {
+    height: 100%;
+    // scroll-behavior: smooth;
+}
+
+// html{
+//     scroll-behavior: smooth;
+// }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    // padding: 0;
+}

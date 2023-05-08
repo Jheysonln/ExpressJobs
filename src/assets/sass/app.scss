@@ -1,0 +1,238 @@
+/* You can add global styles to this file, and also import other style files */
+//@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+// @import './assets/plugins/metismenu/css/metisMenu.min.css';
+// @import './assets/sass/custom-bootstrap.scss';
+// @import './assets/sass/mat-ligth-theme.scss';
+// @import './assets/sass/mat-dark-theme.scss';
+// @import './assets/sass/custom-scroll.scss';
+// @use '@angular/material' as mat;
+// @include mat.all-component-typographies();
+// @include mat.core();
+
+//@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import './custom-bootstrap.scss';
+@import './mat-themes.scss';
+@import './custom-scroll.scss';
+@import '@sweetalert2/theme-dark/dark.scss';
+
+//#ANGULAR MATERIAL#//
+$am-mat-primary: mat-color($angular-primary);
+$am-mat-accent: mat-color($angular-accent);
+$am-mat-warn: mat-color($angular-warn);
+//#BOOTSTRAP#//
+$b-primary : $primary;
+$b-secondary : $secondary;
+$b-success : $success;
+$b-info : $info;
+$b-warning : $warning;
+$b-danger : $danger;
+$b-light : $light;
+$b-dark : $dark;
+
+.j-mat-primary {
+    background-color: $am-mat-primary !important;
+    color: $b-light ;
+}
+
+.j-mat-accent {
+    background-color: $am-mat-accent !important;
+    color: $b-light ;
+}
+
+.j-mat-warn {
+    background-color: $am-mat-warn !important;
+    color: $b-light ;
+}
+
+.j-purple-premium {
+    background-image: linear-gradient(90deg, #b300f4, #0c0519) !important;
+    color: $b-light ;
+}
+
+.j-pink-premium {
+    background-image: linear-gradient(90deg, #f81fce, #190516) !important;
+    color: $b-light ;
+}
+
+.j-red-premium {
+    background-image: linear-gradient(90deg, #e01515, #190a05) !important;
+    color: $b-light ;
+}
+
+.j-blue-premium {
+    background-image: linear-gradient(90deg, #1b49ff, #050b19) !important;
+    color: $b-light ;
+}
+
+.j-green-premium {
+    background-image: linear-gradient(90deg, #008187, #051917) !important;
+    color: $b-light ;
+}
+
+.j-dark-premium {
+    background-image: linear-gradient(90deg, rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100)) !important;
+    color: $b-light ;
+}
+
+.j-purple-premium-sidebar {
+    background-image: linear-gradient(180deg, #b300f4, #1f2126) !important;
+    color: $b-light ;
+}
+
+.j-pink-premium-sidebar {
+    background-image: linear-gradient(180deg, #870052, #190516) !important;
+    color: $b-light ;
+}
+
+.j-red-premium-sidebar {
+    background-image: linear-gradient(180deg, #870000, #190a05) !important;
+    color: $b-light ;
+}
+
+.j-blue-premium-sidebar {
+    background-image: linear-gradient(180deg, #001b87, #050b19) !important;
+    color: $b-light ;
+}
+
+.j-green-premium-sidebar {
+    background-image: linear-gradient(180deg, #008187, #051917) !important;
+    color: $b-light ;
+}
+
+.j-dark-premium-sidebar {
+    background-image: linear-gradient(180deg, rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100)) !important;
+    color: $b-light ;
+}
+
+
+
+.cdk-overlay-pane {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.j-custom-progress-bar-white {
+    .mat-progress-bar-fill::after {
+        background-color: $b-light;
+    }
+
+    .mat-progress-bar-buffer {
+        background-color: rgb(82 82 82 / 40%);
+    }
+
+    .mat-progress-bar-background {
+        animation: none;
+        background-color: #eceff1;
+        fill: #eceff1;
+    }
+}
+
+.j-custom-mat-checkbox {
+    .mat-checkbox-layout {
+        white-space: normal;
+        display: block;
+    }
+}
+
+.j-custom-mat-radio-button {
+    .mat-radio-label .mat-radio-label-content {
+        white-space: normal;
+        display: block;
+    }
+}
+
+//POR ENCIMA DE MD
+@include media-breakpoint-up(md) {
+
+    .page-content {
+        padding: 1.5rem 1.0rem 0.5rem 1.0rem;
+    }
+}
+
+//POR DEBAJO DE MD
+@include media-breakpoint-down(md) {
+
+
+    .page-content {
+        padding: 1.5rem 0rem 1.5rem 0rem;
+    }
+
+}
+
+//POR ENCIMA DE SM
+@include media-breakpoint-up(sm) {
+
+    .cdk-overlay-pane {
+        .mat-mdc-menu-panel {
+            &.j-custom-mat-menu-sm {
+                max-width: 340px;
+                min-width: 340px;
+            }
+        }
+    }
+}
+
+.swal2-actions:not(.swal2-loading).custom-actions-swall {
+    .swal2-confirm.btnSwallConfirm {
+        background-color: $am-mat-primary ;
+        color: white;
+    }
+
+    .swal2-cancel.btnSwallCancel {
+        background-color: $am-mat-accent;
+        color: white;
+    }
+
+    .swal2-deny.btnSwallDeny {
+        background-color: $am-mat-warn ;
+        color: white;
+    }
+
+    .swal2-styled.btnSwallConfirm:hover {
+        background-image: linear-gradient(rgb(0 0 0 / 10%), rgb(0 0 0 / 46%));
+    }
+
+    .swal2-styled.btnSwallCancel:hover {
+        background-image: linear-gradient(rgb(0 0 0 / 10%), rgb(0 0 0 / 46%));
+    }
+
+    .swal2-styled.btnSwallDeny:hover {
+        background-image: linear-gradient(rgb(0 0 0 / 10%), rgb(0 0 0 / 46%));
+    }
+
+    .borderSwall {
+        border-radius: 4px;
+    }
+}
+
+.swal2-container.swal2-backdrop-show.custom-swall-toast-container {
+    width: 100%;
+    position: absolute;
+    pointer-events: auto;
+    z-index: 1060;
+    overflow: hidden !important;
+         &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+         background: rgba(25, 25, 26, 0.75);
+        height: 100%;
+    }
+    .swal2-popup.custom-swall-toast-popup {
+        width: 342px !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 342px) { 
+    .swal2-container.swal2-backdrop-show.custom-swall-toast-container {    
+        .swal2-popup.custom-swall-toast-popup {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+    }
+ }

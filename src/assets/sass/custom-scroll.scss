@@ -1,0 +1,254 @@
+.lightMode {
+
+    /*******************************************************************************/
+    /******************************** SCROLL SIDEBAR *******************************/
+    /*******************************************************************************/
+    .mat-drawer-inner-container {
+        //PARA NAVEGADOR FIREFOX
+        scrollbar-width: thin;
+        scrollbar-color: rgb(221, 221, 221) white;
+        //MASCARA PARA EL EFECTO HOVER
+        mask-image: linear-gradient(to top, transparent, black),
+            linear-gradient(to left, transparent 17px, black 17px);
+        mask-size: 100% 20000px;
+        mask-position: left bottom;
+        -webkit-mask-image: linear-gradient(to top, transparent, black) linear-gradient(to left, transparent 17px, black 17px);
+        -webkit-mask-size: 100% 20000px;
+        -webkit-mask-position: left bottom;
+        transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+
+        &:hover {
+            mask-position: left top;
+        }
+
+        //PARA NAVEGADOR CRHOME, OPERA, SAFARI, EDGE, BRAVE
+        &::-webkit-scrollbar {
+            width: .6em;
+            ;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgb(221, 221, 221);
+            border-radius: 4px;
+
+            /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+            &:hover {
+                background: rgb(221, 221, 221);
+                box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Ponemos un color de fondo y redondeamos las esquinas del track */
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 4px;
+
+            //Cambiamos el fondo cuando esté en active o hover 
+            &:hover,
+            &:active {
+                background: transparent;
+            }
+        }
+
+    }
+
+    /*******************************************************************************/
+    /**************************** SCROLL PERZONALIZADO *****************************/
+    /*******************************************************************************/
+
+    .j-custom-scroll {
+        position: relative;
+
+        .init-scroll {
+            width: 100%;
+            overflow-y: scroll;
+            // Firefox
+            scrollbar-width: thin;
+            scrollbar-color: rgb(221, 221, 221) white;
+            padding-left: .6em;
+            &::-webkit-scrollbar {
+                width: .6em;
+            }
+
+            &::-webkit-scrollbar,
+            &::-webkit-scrollbar-thumb {
+                overflow: visible;
+                border-radius: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(221, 221, 221);
+            }
+        }
+
+        .find-scroll {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 0;
+            width: .6em;
+            // transition: all .5s;
+            opacity: 1;
+            background: white;
+        }
+
+        &:hover{
+            position: static;
+            .find-scroll {
+                opacity: 0;
+            }
+        } 
+    }
+
+    /*******************************************************************************/
+    /******************************* SCROLL MAT-MENU *******************************/
+    /*******************************************************************************/
+    .mat-mdc-menu-panel {
+        &.j-custom-mat-menu-scroll {
+            //PARA NAVEGADOR FIREFOX
+            scrollbar-width: thin;
+            scrollbar-color: rgb(221, 221, 221) white;
+
+            &::-webkit-scrollbar {
+                width: .6em;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(221, 221, 221);
+                border-radius: 4px;
+            }
+
+            /* Ponemos un color de fondo y redondeamos las esquinas del track */
+            &::-webkit-scrollbar-track {
+                background: white;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
+.darkMode {
+
+    /*******************************************************************************/
+    /******************************** SCROLL SIDEBAR *******************************/
+    /*******************************************************************************/
+    .mat-drawer-inner-container {
+        //PARA NAVEGADOR FIREFOX
+        scrollbar-width: thin;
+        scrollbar-color: rgb(44, 44, 44) #212121;
+        //MASCARA PARA EL EFECTO HOVER
+        mask-image: linear-gradient(to top, transparent, black),
+            linear-gradient(to left, transparent 17px, black 17px);
+        mask-size: 100% 20000px;
+        mask-position: left bottom;
+        -webkit-mask-image: linear-gradient(to top, transparent, black) linear-gradient(to left, transparent 17px, black 17px);
+        -webkit-mask-size: 100% 20000px;
+        -webkit-mask-position: left bottom;
+        transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+
+        &:hover {
+            mask-position: left top;
+        }
+
+        //PARA NAVEGADOR CRHOME, OPERA, SAFARI, EDGE, BRAVE
+        &::-webkit-scrollbar {
+            width: .6em;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgb(44, 44, 44);
+            border-radius: 4px;
+
+            /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+            &:hover {
+                background: rgb(44, 44, 44);
+                box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Ponemos un color de fondo y redondeamos las esquinas del track */
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 4px;
+
+            //Cambiamos el fondo cuando esté en active o hover 
+            &:hover,
+            &:active {
+                background: transparent;
+            }
+        }
+
+    }
+
+    /*******************************************************************************/
+    /**************************** SCROLL PERZONALIZADO *****************************/
+    /*******************************************************************************/
+
+    .j-custom-scroll {
+         position: relative;
+        .init-scroll {
+            width: 100%;
+            overflow-y: scroll;
+            // Firefox
+            scrollbar-width: thin;
+            scrollbar-color: rgb(44, 44, 44) #212121;
+            padding-left: .6em;
+            &::-webkit-scrollbar {
+                width: .6em;
+            }
+
+            &::-webkit-scrollbar,
+            &::-webkit-scrollbar-thumb {
+                overflow: visible;
+                border-radius: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(44, 44, 44);
+            }
+        }
+
+        .find-scroll {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 0;
+            width: .6em;
+            // transition: all .5s;
+            opacity: 1;
+            background: #212121;
+        }
+        &:hover{
+            position: static;
+            .find-scroll {
+                opacity: 0;
+            }
+        } 
+    }
+
+    /*******************************************************************************/
+    /******************************* SCROLL MAT-MENU *******************************/
+    /*******************************************************************************/
+    .mat-mdc-menu-panel {
+        &.j-custom-mat-menu-scroll {
+            //PARA NAVEGADOR FIREFOX
+            scrollbar-width: thin;
+            scrollbar-color: rgb(44, 44, 44) #212121;
+
+            &::-webkit-scrollbar {
+                width: .6em;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgb(44, 44, 44);
+                border-radius: 4px;
+            }
+
+            /* Ponemos un color de fondo y redondeamos las esquinas del track */
+            &::-webkit-scrollbar-track {
+                background: #212121;
+                border-radius: 4px;
+            }
+        }
+    }
+}

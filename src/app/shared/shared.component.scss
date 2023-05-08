@@ -1,0 +1,62 @@
+//Este mixin actualizara el heigth de vh a % en Firefox importante
+@mixin set-height($height) {
+	height: $height;
+	@supports (-moz-appearance:none) {
+	  height: 100%;
+	}
+  }
+
+  @mixin drawer-height {
+	@include set-height(100vh);
+  }
+  
+  .mat-drawer-container {
+	@include drawer-height;
+  }
+
+
+// mat-drawer-container {
+// 	//height: 100%;
+// 	 //height: 100vh;
+// }
+
+mat-drawer,
+mat-drawer-content {
+	transition-duration: .4s;
+	transition-timing-function: cubic-bezier(.25, .8, .25, 1);
+}
+
+mat-drawer-content {
+	// display: flex;
+	// flex-direction: column;
+	overflow-x: hidden; /* agregar esta línea */
+}
+
+mat-drawer {
+	width: 250px;
+	transition-property: width;
+	word-break: break-word;
+
+	&.sidenav-collapsed {
+		width: 100px;
+	}
+
+	&.sidenav-collapsed:hover {
+		width: 250px;
+	}
+}
+
+.page-wrapper {
+	flex: 1;
+	//  min-height: 100%;
+	// margin-bottom: auto;
+}
+.page-content {
+	overflow-x: hidden;
+}
+
+.footer{
+	position: sticky;
+    bottom: 0;
+	z-index: 1000;
+}

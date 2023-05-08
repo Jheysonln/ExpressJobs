@@ -1,0 +1,126 @@
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 mb-3">
+    <div class="col">
+        <mat-card class="text-break my-2" style="border-radius: 10px;">
+            <mat-card-content class="dashboard-card-content">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div>
+                            <p class="mb-0">Sessions</p>
+                            <h3 class="mb-0">876</h3>
+                        </div>
+                        <div class="ms-auto align-self-center" style="font-size: 35px;">
+                            <i class='bx bx-cart'></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="loadingChartSpinner; else contentChartAreaRed2">
+                            <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                            </mat-progress-spinner>
+                        </div>
+                        <ng-template #contentChartAreaRed2>
+                            <!-- Here is where your loaded content goes! -->
+                            <apx-chart #chartAreaRed class="row" [series]="chartOptionsAreaRed?.series"
+                            [chart]="chartOptionsAreaRed?.chart" [stroke]="chartOptionsAreaRed?.stroke"
+                            [fill]="chartOptionsAreaRed?.fill" [colors]="chartOptionsAreaRed?.colors"
+                            [tooltip]="chartOptionsAreaRed?.tooltip">
+                        </apx-chart>
+                        </ng-template>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col">
+        <mat-card class="text-break my-2" style="border-radius: 10px;">
+            <mat-card-content class="dashboard-card-content">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div>
+                            <p class="mb-0">Total Income</p>
+                            <h3 class="mb-0">$52,945</h3>
+                        </div>
+                        <div class="ms-auto align-self-center" style="font-size: 35px;">
+                            <i class='bx bx-wallet'></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="loadingChartSpinner; else contentChartAreaPurple2">
+                            <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                            </mat-progress-spinner>
+                        </div>
+                        <ng-template #contentChartAreaPurple2>
+                            <!-- Here is where your loaded content goes! -->
+                            <apx-chart #chartAreaPurple2 class="row" [series]="chartOptionsAreaPurple?.series"
+                            [chart]="chartOptionsAreaPurple?.chart" [stroke]="chartOptionsAreaPurple?.stroke"
+                            [fill]="chartOptionsAreaPurple?.fill" [colors]="chartOptionsAreaPurple?.colors"
+                            [tooltip]="chartOptionsAreaPurple?.tooltip">
+                        </apx-chart>
+                        </ng-template>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col">
+        <mat-card class="text-break my-2" style="border-radius: 10px;">
+            <mat-card-content class="dashboard-card-content">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div>
+                            <p class="mb-0">Total Users</p>
+                            <h3 class="mb-0">$24.5k5</h3>
+                        </div>
+                        <div class="ms-auto align-self-center" style="font-size: 35px;">
+                            <i class='bx bx-group'></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="loadingChartSpinner; else contentChartAreaYellow">
+                            <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                            </mat-progress-spinner>
+                        </div>
+                        <ng-template #contentChartAreaYellow>
+                            <!-- Here is where your loaded content goes! -->
+                            <apx-chart #chartAreaYellow class="row" [series]="chartOptionsAreaYellow?.series"
+                            [chart]="chartOptionsAreaYellow?.chart" [stroke]="chartOptionsAreaYellow?.stroke"
+                            [fill]="chartOptionsAreaYellow?.fill" [colors]="chartOptionsAreaYellow?.colors"
+                            [tooltip]="chartOptionsAreaYellow?.tooltip">
+                        </apx-chart>
+                        </ng-template>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col">
+        <mat-card class="text-break my-2" style="border-radius: 10px;">
+            <mat-card-content class="dashboard-card-content">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <div>
+                            <p class="mb-0">Comments</p>
+                            <h3 class="mb-0">869</h3>
+                        </div>
+                        <div class="ms-auto align-self-center" style="font-size: 35px;">
+                            <i class='bx bx-chat'></i>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="loadingChartSpinner; else contentChartAreaGreen">
+                            <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                            </mat-progress-spinner>
+                        </div>
+                        <ng-template #contentChartAreaGreen>
+                            <!-- Here is where your loaded content goes! -->
+                            <apx-chart #chartAreaGreen class="row" [series]="chartOptionsAreaGreen?.series"
+                            [chart]="chartOptionsAreaGreen?.chart" [stroke]="chartOptionsAreaGreen?.stroke"
+                            [fill]="chartOptionsAreaGreen?.fill" [colors]="chartOptionsAreaGreen?.colors"
+                            [tooltip]="chartOptionsAreaGreen?.tooltip">
+                        </apx-chart>
+                        </ng-template>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

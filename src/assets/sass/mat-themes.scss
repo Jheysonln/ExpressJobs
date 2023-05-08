@@ -1,0 +1,1290 @@
+@use '@angular/material' as mat;
+@import "@angular/material/theming";
+@include mat.all-component-typographies();
+@include mat.core();
+
+$angular-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-warn: mat.define-palette(mat.$red-palette);
+$angular-default-theme: mat.define-light-theme((color: (primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      )));
+$angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary,
+        accent: $angular-accent,
+        warn: $angular-warn,
+      )));
+
+      $j-ligth-color : #fff;
+      $j-dark-color : #212121;
+// @mixin _mat-custorm-color($palette) {
+//   background: mat-color($palette);
+//   color: mat-color($palette, default-contrast);
+// }
+
+// @mixin card-component-theme($config-or-theme) {
+//   // retrieve variables from theme
+//   // (all possible variables, use only what you really need)
+//   $config: mat-get-color-config($config-or-theme);
+//   $primary: map-get($config, primary);
+//   $accent: map-get($config, accent);
+//   $warn: map-get($config, warn);
+//   $foreground: map-get($config, foreground);
+//   $background: map-get($config, background);
+
+//   .mdc-card {
+//     // let's take mat-toolbar's default theme
+//     background-color: mat-color($background, app-bar);
+//     color: mat-color($foreground, text);
+
+//     $color-list: ("primary": $primary,
+//       "accent": $accent,
+//       "warn": $warn,
+//     );
+
+//     // now, mat-toolbar's colored themes
+//     @each $key,
+//     $val in $color-list {
+//       &[color="#{$key}"] {
+//         @include _mat-custorm-color($val);
+//         // .mat-list-base {
+//         //   .mat-list-item {
+//         //     color: mat-color($val, default-contrast);
+//         //   }
+//         // }
+//       }
+//     }
+//   }
+
+// }
+
+// @mixin _mat-toolbar-color($palette) {
+//   background: mat-color($palette);
+//   color: mat-color($palette, default-contrast);
+// }
+
+// @mixin _mat-toolbar-form-field-overrides {
+//   .mat-form-field-underline,
+//   .mat-form-field-ripple,
+//   .mat-focused .mat-form-field-ripple {
+//     background-color: currentColor;
+//   }
+
+//   .mat-form-field-label,
+//   .mat-focused .mat-form-field-label,
+//   .mat-select-value,
+//   .mat-select-arrow,
+//   .mat-form-field.mat-focused .mat-select-arrow {
+//     color: inherit;
+//   }
+
+//   .mat-input-element {
+//     caret-color: currentColor;
+//   }
+// }
+
+// @mixin mat-toolbar-theme($theme) {
+//   $primary: map-get($theme, primary);
+//   $accent: map-get($theme, accent);
+//   $warn: map-get($theme, warn);
+//   $background: map-get($theme, background);
+//   $foreground: map-get($theme, foreground);
+
+//   .mat-toolbar {
+//     background: mat-color($background, app-bar);
+//     color: mat-color($foreground, text);
+
+//     &.mat-primary {
+//       @include _mat-toolbar-color($primary);
+//     }
+
+//     &.mat-accent {
+//       @include _mat-toolbar-color($accent);
+//     }
+
+//     &.mat-warn {
+//       @include _mat-toolbar-color($warn);
+//     }
+
+//     @include _mat-toolbar-form-field-overrides;
+//   }
+// }
+
+
+
+//Tema por defecto fuera de la clase para evitar error de duplicidad
+@include mat.all-component-themes($angular-default-theme);
+
+.lightMode {
+  .mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+    background: $j-ligth-color;
+    border-bottom: 1px solid rgb(228 228 228 / 0%);
+    background-clip: border-box;
+    box-shadow: 0 0.125rem 0.25rem rgb(136 152 170 / 15%);
+  }
+
+  .custom-footer {
+    background: $j-ligth-color;
+    border-top: 1px solid rgba(228, 228, 228, 0);
+    background-clip: border-box;
+    box-shadow: 0.305rem 0rem 0rem 0.225rem rgb(136 152 170 / 15%);
+  }
+
+  .mat-mdc-table {
+    width: 100%;
+
+    & th {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    & tr.table-detail-row {
+      height: 0;
+    }
+
+    & tr.table-hover-row {
+      cursor: pointer;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+
+    & tr.table-select-row {
+      background: #f5f5f5;
+      font-weight: 500;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+  }
+
+  .j-menu-hover {
+    position: relative;
+    transition: color .3s ease-in-out;
+    z-index: 0;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background-color: #f5f5f5;
+      transition: width .3s ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
+
+  .j-custom-icon-hover {
+    margin: 0.5rem;
+    border-radius: 50%;
+    position: relative;
+    color: inherit;
+    background-color: rgb(154 154 154 / 15%);
+    transition: 300ms;
+
+    &:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px mat-color($angular-primary);
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &:hover {
+      background-color: mat-color($angular-primary);
+      color: white;
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+  .j-custom-mat-icon-hover {
+    position: relative;
+    color: white;
+    transition: 300ms;
+
+    &.mat-icon-hover-primary:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px mat-color($angular-primary);
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &.mat-icon-hover-accent:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px mat-color($angular-accent);
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &.mat-icon-hover-warn:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px mat-color($angular-warn);
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &.mat-icon-hover-primary:hover {
+      background-color: mat-color($angular-primary);
+      color: white;
+    }
+
+    &.mat-icon-hover-accent:hover {
+      background-color: mat-color($angular-accent);
+      color: white;
+    }
+
+    &.mat-icon-hover-warn:hover {
+      background-color: mat-color($angular-warn);
+      color: white;
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+   //Transicion de derecha e izquiera en botones outline
+
+  .mat-mdc-outlined-button {
+    &:not(.j-mat-button-border-radius) {
+      border-radius: none;
+    }
+
+    &.j-mat-button-border-radius {
+      border-radius: 30px;
+    }
+    &.j-custom-mat-stroked-button-basic {
+      border: 2px solid $j-dark-color;
+      transition: all .3s ease;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: $j-dark-color;
+        // background-color: darken($j-ligth-color, 15%);
+        color: $j-ligth-color;
+        transition: width .3s ease-in-out;
+        border: 4px;
+
+      }
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+
+    }
+
+    &.j-custom-mat-stroked-button-primary {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-primary);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-primary);
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+
+    &.j-custom-mat-stroked-button-accent {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-accent);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-accent);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+
+    &.j-custom-mat-stroked-button-warn {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-warn);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-warn);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  
+  //Transicion de derecha e izquiera en botones raised
+
+  .mat-mdc-raised-button {
+    &:not(.j-mat-button-border-radius) {
+      border-radius: none;
+    }
+
+    &.j-mat-button-border-radius {
+      border-radius: 30px;
+    }
+    &.j-custom-mat-raised-button-basic {
+      border: 2px solid #1a1a1a;
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      background-color: $j-ligth-color;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken($j-ligth-color, 5%);
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken($j-ligth-color, 4%);
+      // }
+    }
+
+    &.j-custom-mat-raised-button-primary {
+      border: 2px solid mat-color($angular-primary);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-primary), 5%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-primary), 10%)
+      // }
+    }
+
+    &.j-custom-mat-raised-button-accent {
+      border: 2px solid mat-color($angular-accent);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-accent), 5%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-accent), 10%);
+      // }
+    }
+
+    &.j-custom-mat-raised-button-warn {
+      border: 2px solid mat-color($angular-warn);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-warn), 5%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-warn), 10%);
+      // }
+    }
+  }
+
+  // Transicion al hacer click en botones
+
+  .j-mat-button-ms-basic {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-ligth-color, 0px 0px 0px 5px $j-dark-color !important;
+    }
+  }
+
+  .j-mat-button-ms-basic-2 {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-ligth-color, 0px 0px 0px 5px $j-dark-color !important;
+    }
+  }
+
+  .j-mat-button-ms-primary {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-ligth-color, 0px 0px 0px 5px mat-color($angular-primary) !important;
+    }
+  }
+
+  .j-mat-button-ms-accent {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-ligth-color, 0px 0px 0px 5px mat-color($angular-accent) !important;
+    }
+  }
+
+  .j-mat-button-ms-warn {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-ligth-color, 0px 0px 0px 5px mat-color($angular-warn) !important;
+    }
+  }
+
+  //Border
+
+  .j-custom-border {
+    border: 2px solid #707070;
+  }
+}
+
+
+
+////////////////////////////////////# DAARK THEME # //////////////////////////////////////////
+@mixin _mat-custorm-color($palette) {
+  background: mat-color($palette);
+  color: mat-color($palette, default-contrast);
+}
+
+@mixin sidenav-component-theme($config-or-theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+
+  .mat-drawer {
+    // let's take mat-toolbar's default theme
+    background-color: mat-color($background, app-bar);
+    color: mat-color($foreground, text);
+
+    $color-list: ("primary": $primary,
+      "accent": $accent,
+      "warn": $warn,
+    );
+
+    // now, mat-toolbar's colored themes
+    @each $key,
+    $val in $color-list {
+      &[color="#{$key}"] {
+        @include _mat-custorm-color($val);
+
+        .mat-list-base {
+          .mat-list-item {
+            color: mat-color($val, default-contrast);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin card-component-theme($config-or-theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+
+  .mdc-card {
+    // let's take mat-toolbar's default theme
+    background-color: mat-color($background, app-bar);
+    color: mat-color($foreground, text);
+
+    $color-list: ("primary": $primary,
+      "accent": $accent,
+      "warn": $warn,
+    );
+
+    // now, mat-toolbar's colored themes
+    @each $key,
+    $val in $color-list {
+      &[color="#{$key}"] {
+        @include _mat-custorm-color($val);
+        // .mat-list-base {
+        //   .mat-list-item {
+        //     color: mat-color($val, default-contrast);
+        //   }
+        // }
+      }
+    }
+  }
+
+}
+
+@mixin menu-component-theme($config-or-theme) {
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+
+  .mat-mdc-menu-content {
+    // let's take mat-toolbar's default theme
+    background-color: mat-color($background, app-bar);
+    color: mat-color($foreground, text);
+
+    $color-list: ("primary": $primary,
+      "accent": $accent,
+      "warn": $warn,
+    );
+
+    // now, mat-toolbar's colored themes
+    @each $key,
+    $val in $color-list {
+      &[color="#{$key}"] {
+        @include _mat-custorm-color($val);
+        // .mat-list-base {
+        //   .mat-list-item {
+        //     color: mat-color($val, default-contrast);
+        //   }
+        // }
+      }
+    }
+  }
+
+}
+
+
+.darkMode {
+  // @include mat.all-component-themes($angular-dark-theme);
+  @include mat.all-component-colors($angular-dark-theme);
+  @include sidenav-component-theme($angular-dark-theme);
+  @include card-component-theme($angular-dark-theme);
+  @include menu-component-theme($angular-dark-theme);
+
+  .mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+  }
+
+  .custom-footer {
+    background: $j-dark-color;
+  }
+
+  .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  mat-table.mat-mdc-table,
+  table.mat-mdc-table{
+    width: 100%;
+    background: $j-dark-color;
+
+    & th {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    & tr.table-detail-row {
+      height: 0;
+    }
+
+    & tr.table-hover-row {
+      &:hover {
+        cursor: pointer;
+        background: rgb(255 255 255 / 3%);
+        ;
+      }
+    }
+
+    & tr.table-select-row {
+      background: rgb(255 255 255 / 3%);
+      font-weight: 500;
+
+      &:hover {
+        background: rgb(255 255 255 / 3%);
+        ;
+      }
+    }
+  }
+
+  .j-menu-hover {
+    position: relative;
+    transition: color .3s ease-in-out;
+    z-index: 0;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background-color: rgb(255 255 255 / 3%);
+      ;
+      transition: width .3s ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
+
+  .j-custom-mat-icon-hover {
+    position: relative;
+    color: inherit;
+    transition: 300ms;
+    &:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px $j-ligth-color;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &.mat-icon-hover-primary:hover {
+      background-color: $j-ligth-color;
+      color: mat-color($angular-primary);
+    }
+
+    &.mat-icon-hover-accent:hover {
+      background-color: $j-ligth-color;
+      color: mat-color($angular-accent);
+    }
+
+    &.mat-icon-hover-warn:hover {
+      background-color: $j-ligth-color;
+      color: mat-color($angular-warn);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+   //Transicion de derecha e izquiera en botones outline
+
+  .mat-mdc-outlined-button {
+    &:not(.j-mat-button-border-radius) {
+      border-radius: none;
+    }
+
+    &.j-mat-button-border-radius {
+      border-radius: 30px;
+    }
+    &.j-custom-mat-stroked-button-basic {
+      border: 2px solid $j-ligth-color;
+      transition: all .3s ease;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: $j-ligth-color;
+        // background-color: darken($j-ligth-color, 15%);
+        color: $j-ligth-color;
+        transition: width .3s ease-in-out;
+        border: 4px;
+
+      }
+
+      &:hover {
+        color: #000;
+
+        &:after {
+          width: 100%;
+        }
+      }
+
+    }
+
+    &.j-custom-mat-stroked-button-primary {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-primary);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-primary);
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+
+    &.j-custom-mat-stroked-button-accent {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-accent);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-accent);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+
+    &.j-custom-mat-stroked-button-warn {
+      transition: all .3s ease;
+      border: 2px solid mat-color($angular-warn);
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: mat-color($angular-warn);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+      }
+
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+   //Transicion de derecha e izquiera en botones outline
+
+  .mat-mdc-raised-button {
+    &:not(.j-mat-button-border-radius) {
+      border-radius: none;
+    }
+
+    &.j-mat-button-border-radius {
+      border-radius: 30px;
+    }
+
+    &.j-custom-mat-raised-button-basic {
+      border: 2px solid $j-ligth-color;
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      background-color: $j-dark-color;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(#000, 10%);
+        color: $j-dark-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        //border-radius: 4px;
+      }
+
+      &:hover {
+        color: $j-ligth-color;
+
+        &:after {
+          width: 100%;
+        }
+      }
+
+      // &:focus {
+      //   background-color: darken(#000, 10%);
+      // }
+    }
+
+    &.j-custom-mat-raised-button-primary {
+      border: 2px solid mat-color($angular-primary);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-primary), 10%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-primary), 10%)
+      // }
+    }
+
+    &.j-custom-mat-raised-button-accent {
+      border: 2px solid mat-color($angular-accent);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-accent), 10%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-accent), 10%);
+      // }
+    }
+
+    &.j-custom-mat-raised-button-warn {
+      border: 2px solid mat-color($angular-warn);
+      transition: all .3s ease;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+
+      &:not(.j-mat-button-border-radius):after {
+        border-radius: none;
+      }
+
+      &.j-mat-button-border-radius:after {
+        border-radius: 30px;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background-color: darken(mat-color($angular-warn), 10%);
+        color: $j-ligth-color;
+        border: 4px;
+        transition: width .3s ease-in-out;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+
+      // &:focus {
+      //   background-color: darken(mat-color($angular-warn), 10%);
+      // }
+    }
+  }
+
+  // Transicion al hacer click en botones
+
+  .j-mat-button-ms-basic {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-dark-color, 0px 0px 0px 5px $j-ligth-color !important;
+    }
+  }
+
+  .j-mat-button-ms-basic-2 {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-dark-color, 0px 0px 0px 5px $j-ligth-color !important;
+    }
+  }
+
+  .j-mat-button-ms-primary {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-dark-color, 0px 0px 0px 5px mat-color($angular-primary) !important;
+    }
+  }
+
+  .j-mat-button-ms-accent {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-dark-color, 0px 0px 0px 5px mat-color($angular-accent) !important;
+    }
+  }
+
+  .j-mat-button-ms-warn {
+    transition: 0.3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 3px $j-dark-color, 0px 0px 0px 5px mat-color($angular-warn) !important;
+    }
+  }
+
+  .j-custom-icon-hover {
+    margin: 0.5rem;
+    border-radius: 50%;
+    position: relative;
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: 300ms;
+
+    &:after {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      content: '';
+      box-sizing: content-box;
+      box-shadow: 0 0 0 3px $j-ligth-color;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 300ms;
+    }
+
+    &:hover {
+      background-color: $j-ligth-color;
+      color: mat-color($angular-primary);
+    }
+
+    &:hover:after {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+  //Border
+
+  .j-custom-border {
+    border: 2px solid white;
+  }
+}
