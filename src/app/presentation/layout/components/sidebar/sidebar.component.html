@@ -1,0 +1,78 @@
+<div [ngClass]="{ 'collapsed': collapsedNav && !isMovil}">
+    <div class="sidenav-header">
+        <span>{{ collapsedNav && !isMovil ? 'S' : 'SideNav' }}</span>
+    </div>
+    <hr class="m-auto" style="width: 92%;">
+    <div class="user-profile">
+        <div class="d-flex p-2">
+            <div class="col-6">
+                <div class="avatar-upload-modal">
+                    <div class="avatar-preview-modal">
+                        <div [style.backgroundImage]="'url(../../../assets/images/avatars/avatar-1.png)'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 align-self-center description-profile">
+                <p class="mb-0 user-name">Jhyeson Jhonatan Limachi Noriega</p>
+                <p class="mb-0 text-secondary mat-small fw-bold">Admin</p>
+                <p class="mb-0 user-status">
+                    <i class="fa fa-circle"></i>
+                    <span>Online</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr class="m-auto" style="width: 92%;">
+    <ul class="metismenu" id="menu">
+        <li *ngFor="let dato of datos" [ngClass]="dato.title ? 'menu-label' : ''">
+            <!-- <ng-container
+                [ngClass]="dato.descripcion == 'About Us' ? 'd-lg-none' : ''"> -->
+            <!-- Muestralo si no existe un title-->
+            <ng-container *ngIf="dato">
+                <ng-container *ngIf="!dato.title; else getTitle">
+                    <ng-container [ngClass]="dato?.descripcion == 'About Us' ? 'd-lg-none' : ''">
+                        <a (click)="onGetRoutes(dato.url)" [ngClass]="dato.url ? '' : 'has-arrow'" [id]="dato.url"
+                            role="button">
+                            <div class="parent-icon">
+                                <i class='{{dato.icon}}'></i>
+                            </div>
+                            <div class="menu-title">{{dato.descripcion}}</div>
+                        </a>
+                        <!-- Muestralo si no existe una ruta -->
+                        <ul *ngIf="!dato.url">
+                            <li *ngFor="let items of dato.subitem">
+                                <a (click)="onGetRoutes(items.url)" [id]="items.url" role="button"><i
+                                        class="bx bx-right-arrow-alt"></i>{{items.descripcion}}</a>
+                            </li>
+                        </ul>
+                    </ng-container>
+    
+                </ng-container>
+                <ng-template #getTitle>
+                    <span class="title-link">{{dato.title}}</span>
+                </ng-template>
+                <!-- </ng-container> -->
+            </ng-container>
+           
+
+        </li>
+    </ul>
+    <!-- <ul>
+        <li *ngFor="let menu of menus" [ngClass]="{'active': menu.active , 'sidebar-dropdown':menu.type === 'dropdown' , 'header-menu':menu.type === 'header'}">
+          <span *ngIf="menu.type === 'header'">{{menu.title}}</span>
+          <a *ngIf="menu.type !== 'header'"(click)='toggle(menu)'>
+            <i class="{{menu.icon}}"></i>
+            <span>{{menu.title}}</span>
+          </a>
+          <div *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)">
+            <ul>
+              <li *ngFor="let submenu of menu.submenus" [ngClass]="{'active': submenu.active }">
+                <a (click)='toggleSubMenu(submenu)'> {{submenu.descripcion}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul> -->
+</div>

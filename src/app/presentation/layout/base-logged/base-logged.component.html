@@ -1,0 +1,24 @@
+<mat-drawer-container>
+    <mat-drawer [class]="'mat-drawer-color ' + sidebarColor" #snav [mode]="isMovil ? 'over' : 'side'"
+        [opened]="!isMovil" [ngClass]="{ 'sidenav-collapsed': collapsedNav && !isMovil}">
+        <app-sidebar [collapsedNav]="collapsedNav" [isMovil]="isMovil" (toggleEventCloseSidenav)="btnCloseSidenav()">
+        </app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content [ngClass]="{ 'text-break' : true ,'sidenav-collapsed': collapsedNav && !isMovil}"
+        [ngStyle]="{'margin-left': collapsedNav && !isMovil ? '100px' : '250px' }">
+        <app-header (toggleEvent)="btnToogled()" (toggleSwitchEvent)="btnToogledSwitch()"></app-header>
+        <div class="page-wrapper">
+            <div class="page-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+       
+        <div class="footer">
+            <app-footer></app-footer>
+        </div>
+    </mat-drawer-content>
+    <mat-drawer class="mat-drawer-color" #sideNavSwitcher mode="over" opened="false" position="end" [autoFocus]="false">
+        <app-switcher (themeEvent)="changeTheme($event)"></app-switcher>
+    </mat-drawer>
+</mat-drawer-container>
+

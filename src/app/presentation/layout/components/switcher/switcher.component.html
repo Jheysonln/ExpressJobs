@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+        <h2 class="mb-0 mat-title mt-2">Theme Configuration</h2>
+    </div>
+    <hr />
+    <h3 class="mat-subheading-2">Theme</h3>
+    <mat-radio-group class="d-flex flex-wrap" [formControl]="selectedTheme">
+        <mat-radio-button class="me-2 mb-2 flex-fill" *ngFor="let theme of themeList" [value]="theme">
+            {{theme}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <hr />
+
+    <h3 class="mat-subheading-2">Header Backgrounds</h3>
+    <div class="colors-indigators">
+        <h4 class="">Material</h4>
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <div #jmatprimary class="indigator j-mat-primary" id="j-mat-primary" (click)="setHeaderColor(jmatprimary)"></div>
+            </div>
+            <div class="col-3">
+                <div #jmataccent class="indigator j-mat-warn" id="j-mat-warn" (click)="setHeaderColor(jmataccent)"></div>
+            </div>
+            <div class="col-3">
+                <div #jmatwarn class="indigator j-mat-accent" id="j-mat-accent" (click)="setHeaderColor(jmatwarn)"></div>
+            </div>
+        </div>
+        <h4 class="">Bootstrap</h4>
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <div #jbgprimary class="indigator bg-primary" id="bg-primary"  (click)="setHeaderColor(jbgprimary)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbgsecondary class="indigator bg-secondary" id="bg-secondary"  (click)="setHeaderColor(jbgsecondary)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbgsuccess class="indigator bg-success" id="bg-success"  (click)="setHeaderColor(jbgsuccess)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbgdanger class="indigator bg-danger" id="bg-danger"  (click)="setHeaderColor(jbgdanger)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbgwarning class="indigator bg-warning" id="bg-warning"  (click)="setHeaderColor(jbgwarning)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbginfo class="indigator bg-info" id="bg-info"  (click)="setHeaderColor(jbginfo)"></div>
+            </div>
+        </div>
+        <h4 class="">Custom</h4>
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <div #jpurplepremium class="indigator j-purple-premium" id="j-purple-premium" (click)="setHeaderColor(jpurplepremium)"></div>
+            </div>
+            <div class="col-3">
+                <div #jpinkpremium class="indigator j-pink-premium" id="j-pink-premium" (click)="setHeaderColor(jpinkpremium)"></div>
+            </div>
+            <div class="col-3">
+                <div #jredpremium class="indigator j-red-premium" id="j-red-premium" (click)="setHeaderColor(jredpremium)"></div>
+            </div>
+            <div class="col-3">
+                <div #jbluepremium class="indigator j-blue-premium" id="j-blue-premium" (click)="setHeaderColor(jbluepremium)"></div>
+            </div>
+            <div class="col-3">
+                <div #jgreenpremium class="indigator j-green-premium" id="j-green-premium" (click)="setHeaderColor(jgreenpremium)"></div>
+            </div>
+            <div class="col-3">
+                <div #jdarkpremium class="indigator j-dark-premium" id="j-dark-premium" (click)="setHeaderColor(jdarkpremium)"></div>
+            </div>
+        </div>
+        <hr />
+        <h3 class="mat-subheading-2">Sidebar Backgrounds</h3>
+        <div class="colors-indigators">
+            <h4 class="">Material</h4>
+            <div class="row g-2 mb-2">
+                <div class="col-3">
+                    <div class="indigator j-mat-primary" id="j-mat-primary" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-mat-warn" id="j-mat-warn" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-mat-accent" id="j-mat-accent" (click)="setSidebarColor($event)"></div>
+                </div>
+            </div>
+            <h4 class="">Bootstrap</h4>
+            <div class="row g-2 mb-2">
+                <div class="col-3">
+                    <div class="indigator bg-primary" id="bg-primary" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator bg-secondary" id="bg-secondary" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator bg-success" id="bg-success" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator bg-danger" id="bg-danger" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator bg-warning" id="bg-warning" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator bg-info" id="bg-info" (click)="setSidebarColor($event)"></div>
+                </div>
+            </div>
+            <h4 class="">Custom</h4>
+            <div class="row g-2 mb-2">
+                <div class="col-3">
+                    <div class="indigator j-purple-premium-sidebar" id="j-purple-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-pink-premium-sidebar" id="j-pink-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-red-premium-sidebar" id="j-red-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-blue-premium-sidebar" id="j-blue-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-green-premium-sidebar" id="j-green-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+                <div class="col-3">
+                    <div class="indigator j-dark-premium-sidebar" id="j-dark-premium-sidebar" (click)="setSidebarColor($event)"></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>

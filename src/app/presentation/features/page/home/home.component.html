@@ -1,0 +1,494 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 row-cols-xxl-5 mb-2">
+        <div class="col border-end">
+            <mat-card class="text-break my-2">
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12 text-center">
+                            <p class="mb-1 ">Sessions</p>
+                            <h3 class="mb-3 ">876</h3>
+                            <p class="font-13 ">
+                                <span class="text-success">
+                                    <i class="lni lni-arrow-up"></i>2.1%
+                                </span> vs last 7 days
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <div *ngIf="loadingChartSpinner; else contentChartAreaPurple">
+                                <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                            <ng-template #contentChartAreaPurple>
+                                <!-- Here is where your loaded content goes! -->
+                                <apx-chart class="row" #chartAreaPurple [series]="chartOptionsAreaPurple?.series"
+                                    [chart]="chartOptionsAreaPurple?.chart" [stroke]="chartOptionsAreaPurple?.stroke"
+                                    [fill]="chartOptionsAreaPurple?.fill" [colors]="chartOptionsAreaPurple?.colors"
+                                    [tooltip]="chartOptionsAreaPurple?.tooltip">
+                                </apx-chart>
+                            </ng-template>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col border-end">
+            <mat-card class="text-break my-2">
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12 text-center">
+                            <p class="mb-1 ">Total Users</p>
+                            <h3 class="mb-3 ">4.5M</h3>
+                            <p class="font-13 "><span class="text-success"><i class="lni lni-arrow-up"></i>
+                                    4.2% </span> last 7 days</p>
+                        </div>
+                        <div class="col-md-12">
+                            <div *ngIf="loadingChartSpinner; else contentChartAreaInfo">
+                                <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                            <ng-template #contentChartAreaInfo>
+                                <!-- Here is where your loaded content goes! -->
+                                <apx-chart class="row" #chartAreaInfo [series]="chartOptionsBarInfo?.series"
+                                    [chart]="chartOptionsBarInfo?.chart"
+                                    [plotOptions]="chartOptionsBarInfo?.plotOptions"
+                                    [colors]="chartOptionsBarInfo?.colors" [stroke]="chartOptionsBarInfo?.stroke"
+                                    [tooltip]="chartOptionsBarInfo?.tooltip">
+                                </apx-chart>
+                            </ng-template>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col border-end">
+            <mat-card class="text-break my-2">
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12 text-center">
+                            <p class="mb-1 ">Page Views</p>
+                            <h3 class="mb-3 ">64,835</h3>
+                            <p class="font-13 "><span class="text-danger"><i class="lni lni-arrow-down"></i>
+                                    3.6%</span> vs last 7 days</p>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentChartAreaYellow">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentChartAreaYellow>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaYellow [series]="chartOptionsAreaYellow?.series"
+                                        [chart]="chartOptionsAreaYellow?.chart"
+                                        [stroke]="chartOptionsAreaYellow?.stroke" [fill]="chartOptionsAreaYellow?.fill"
+                                        [colors]="chartOptionsAreaYellow?.colors"
+                                        [tooltip]="chartOptionsAreaYellow?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col border-end">
+            <mat-card class="text-break my-2">
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12 text-center">
+                            <p class="mb-1 ">Bounce Rate</p>
+                            <h3 class="mb-3 ">42.68%</h3>
+                            <p class="font-13 "><span class="text-success">
+                                    <i class="lni lni-arrow-up"></i>
+                                    2.5%</span> vs last 7 days</p>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentChartAreaRed">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentChartAreaRed>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaRed [series]="chartOptionsBarRed?.series"
+                                        [chart]="chartOptionsBarRed?.chart"
+                                        [plotOptions]="chartOptionsBarRed?.plotOptions"
+                                        [colors]="chartOptionsBarRed?.colors" [stroke]="chartOptionsBarRed?.stroke"
+                                        [tooltip]="chartOptionsBarRed?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col">
+            <mat-card class="text-break my-2">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="mb-1 ">Avg. Session Duration</p>
+                            <h3 class="mb-3 ">00:04:60</h3>
+                            <p class="font-13 "><span class="text-danger"><i class="lni lni-arrow-down"></i>
+                                    5.2%</span> vs last 7 days</p>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentChartAreaGreen">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentChartAreaGreen>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaGreen [series]="chartOptionsAreaGreen?.series"
+                                        [chart]="chartOptionsAreaGreen?.chart" [stroke]="chartOptionsAreaGreen?.stroke"
+                                        [fill]="chartOptionsAreaGreen?.fill" [colors]="chartOptionsAreaGreen?.colors"
+                                        [tooltip]="chartOptionsAreaGreen?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-xl-2">
+        <div class="col">
+            <mat-card class="text-break mb-3">
+                <mat-card-header class="m-0 justify-content-center">
+                    <mat-card-title>Sales Overview</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12">
+                            <div *ngIf="loadingChartSpinner; else contentChartAreaPink">
+                                <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                            <ng-template #contentChartAreaPink>
+                                <!-- Here is where your loaded content goes! -->
+                                <apx-chart class="row" #chartAreaPink id="chartAreaPink"
+                                    [series]="chartOptionsAreaPink?.series" [chart]="chartOptionsAreaPink?.chart"
+                                    [xaxis]="chartOptionsAreaPink?.xaxis" [theme]="chartOptionsAreaPink?.theme"
+                                    [stroke]="chartOptionsAreaPink?.stroke" [tooltip]="chartOptionsAreaPink?.tooltip"
+                                    [dataLabels]="chartOptionsAreaPink?.dataLabels">
+                                </apx-chart>
+                            </ng-template>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col">
+            <mat-card class="text-break mb-3">
+                <mat-card-header class="m-0 justify-content-center">
+                    <mat-card-title>Visitor Status</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12">
+                            <div *ngIf="loadingChartSpinner; else contentChartBarPrimary">
+                                <mat-progress-spinner diameter="20" [value]="valueChartSpinner" mode="indeterminate">
+                                </mat-progress-spinner>
+                            </div>
+                            <ng-template #contentChartBarPrimary>
+                                <!-- Here is where your loaded content goes! -->
+                                <apx-chart class="row" #chartBarPrimary [series]="chartOptionsBarPrimary?.series"
+                                    [chart]="chartOptionsBarPrimary?.chart" [xaxis]="chartOptionsBarPrimary?.xaxis"
+                                    [theme]="chartOptionsBarPrimary?.theme" [stroke]="chartOptionsBarPrimary?.stroke"
+                                    [tooltip]="chartOptionsBarPrimary?.tooltip"
+                                    [dataLabels]="chartOptionsBarPrimary?.dataLabels"></apx-chart>
+                            </ng-template>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <mat-card class="text-break mb-3">
+                <mat-card-header class="m-0 justify-content-center">
+                    <mat-card-title>Geographic</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="d-flex flex-column">
+                        <div class="col-md-12" *ngIf="chargeMaps">
+                            <google-map [options]="options!" width="100%" height="330px">
+                                <map-marker *ngFor="let marker of markers" [position]="marker.position"
+                                    [label]="marker.label" [title]="marker.title"></map-marker>
+                            </google-map>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-12 col-lg-4">
+            <mat-card class="text-break mb-3">
+                <mat-card-header class="m-0 justify-content-center">
+                    <mat-card-title>Shiba Inu</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="j-custom-scroll pt-2">
+                    <div class="init-scroll" style="height: 320px;">
+                        <div class="container-fluid">
+                            <div class="row mb-4">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/united-states.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">United States <strong class="float-end">445,85</strong>
+                                    </p>
+                                    <mat-progress-bar class="mat-accent" mode="determinate" value="50">
+                                    </mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/germany.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">Germany <strong class="float-end">683,46</strong></p>
+                                    <mat-progress-bar class="mat-primary" mode="determinate" value="90">
+                                    </mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/canada.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">Canada <strong class="float-end">982,43</strong></p>
+                                    <mat-progress-bar class="mat-warn" mode="determinate" value="80"></mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/india.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">India <strong class="float-end">852,35</strong></p>
+                                    <mat-progress-bar class="mat-primary" mode="determinate" value="40">
+                                    </mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/netherlands.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">Netherlands <strong class="float-end">785,24</strong>
+                                    </p>
+                                    <mat-progress-bar class="mat-accent" mode="determinate" value="20">
+                                    </mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row mb-0">
+                                <div class="col-3">
+                                    <img src="assets/images/icons/malaysia.png" class="countries-img" alt="">
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-2">Malaysia <strong class="float-end">387,56</strong></p>
+                                    <mat-progress-bar class="mat-warn" mode="determinate" value="100">
+                                    </mat-progress-bar>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-scroll"></div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 mb-3">
+        <div class="col d-flex">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-content class="h-100">
+                    <div class="w-100 h-100 border rounded-3">
+                        <div class="h-100 d-flex flex-column align-content-center justify-content-center">
+                            <div class="col-md-12 py-4 py-lg-0 text-center">
+                                <div *ngIf="loadingChartSpinner; else contentChartPolarArea">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentChartPolarArea>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartPolarArea [series]="chartOptionsPolarArea?.series"
+                                        [chart]="chartOptionsPolarArea?.chart"
+                                        [tooltip]="chartOptionsPolarArea?.tooltip"
+                                        [title]="chartOptionsPolarArea?.title" [theme]="chartOptionsPolarArea?.theme"
+                                        [fill]="chartOptionsPolarArea?.fill" [yaxis]="chartOptionsPolarArea?.yaxis"
+                                        [stroke]="chartOptionsPolarArea?.stroke"
+                                        [legend]="chartOptionsPolarArea?.legend"
+                                        [plotOptions]="chartOptionsPolarArea?.plotOptions"></apx-chart>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col d-flex">
+            <mat-card class="col w-100 p-0 mb-3 bg-transparent shadow-none">
+                <mat-card-content>
+                    <mat-card class="radius-10 mb-2 text-break">
+                        <mat-card-content>
+                            <div class="d-flex align-items-center mb-2">
+                                <div>
+                                    <p class="mb-0">New Sessions</p>
+                                    <h4 class="mb-0">54.6%</h4>
+                                </div>
+                                <div class="ms-auto widgets-icon bg-primary text-primary bg-opacity-25">
+                                    <i class="fas fa-cookie fa-md"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentAreaPurple2">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentAreaPurple2>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaPurple2 [series]="chartOptionsAreaPurple2?.series"
+                                        [chart]="chartOptionsAreaPurple2?.chart"
+                                        [stroke]="chartOptionsAreaPurple2?.stroke"
+                                        [fill]="chartOptionsAreaPurple2?.fill"
+                                        [colors]="chartOptionsAreaPurple2?.colors"
+                                        [tooltip]="chartOptionsAreaPurple2?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="radius-10 mb-2 text-break">
+                        <mat-card-content>
+                            <div class="d-flex align-items-center mb-2">
+                                <div>
+                                    <p class="mb-0">Average Pages</p>
+                                    <h4 class="mb-0">38.5%</h4>
+                                </div>
+                                <div class="ms-auto widgets-icon bg-info text-info bg-opacity-25">
+                                    <i class="fas fa-bookmark fa-md"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentAreaInfo2">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentAreaInfo2>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaInfo2 [series]="chartOptionsBarInfo2?.series"
+                                        [chart]="chartOptionsBarInfo2?.chart"
+                                        [plotOptions]="chartOptionsBarInfo2?.plotOptions"
+                                        [colors]="chartOptionsBarInfo2?.colors" [stroke]="chartOptionsBarInfo2?.stroke"
+                                        [tooltip]="chartOptionsBarInfo2?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card class="radius-10 mb-0 text-break">
+                        <mat-card-content>
+                            <div class="d-flex align-items-center mb-2">
+                                <div>
+                                    <p class="mb-0">Cloud Download</p>
+                                    <h4 class="mb-0">24.5K</h4>
+                                </div>
+                                <div class="ms-auto widgets-icon bg-success text-success bg-opacity-25">
+                                    <i class="fas fa-cloud-arrow-down fa-md"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div *ngIf="loadingChartSpinner; else contentAreaGreen2">
+                                    <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                        mode="indeterminate">
+                                    </mat-progress-spinner>
+                                </div>
+                                <ng-template #contentAreaGreen2>
+                                    <!-- Here is where your loaded content goes! -->
+                                    <apx-chart class="row" #chartAreaGreen2 [series]="chartOptionsAreaGreen2?.series"
+                                        [chart]="chartOptionsAreaGreen2?.chart"
+                                        [stroke]="chartOptionsAreaGreen2?.stroke" [fill]="chartOptionsAreaGreen2?.fill"
+                                        [colors]="chartOptionsAreaGreen2?.colors"
+                                        [tooltip]="chartOptionsAreaGreen2?.tooltip">
+                                    </apx-chart>
+                                </ng-template>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col d-flex">
+            <mat-card class="text-break mb-3 w-100">
+                <mat-card-content class="d-flex h-100">
+                        <div class="container-fluid align-self-center">
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <div *ngIf="loadingChartSpinner; else contentchartCircle">
+                                        <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                                            mode="indeterminate">
+                                        </mat-progress-spinner>
+                                    </div>
+                                    <ng-template #contentchartCircle>
+                                        <apx-chart class="row" #chartCircle [series]="chartOptionsCircle?.series"
+                                            [chart]="chartOptionsCircle?.chart"
+                                            [plotOptions]="chartOptionsCircle?.plotOptions"
+                                            [labels]="chartOptionsCircle?.labels">
+                                        </apx-chart>
+                                    </ng-template>
+                                </div> 
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <div class="col-auto">
+                                    <p class="mb-0">Sales</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">1580</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">875</p>
+                                </div>
+                                <div class="col">
+                                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <div class="col-auto">
+                                    <p class="mb-0">Users</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">1852</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">356</p>
+                                </div>
+                                <div class="col">
+                                    <mat-progress-bar class="mat-accent" mode="determinate" value="80"></mat-progress-bar>
+                                </div>
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <div class="col-auto">
+                                    <p class="mb-0">Visits</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">1280</p>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="mb-0">867</p>
+                                </div>
+                                <div class="col">
+                                    <mat-progress-bar class="mat-warn" mode="determinate" value="60"></mat-progress-bar>
+                                </div>
+                            </div> 
+                        </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
