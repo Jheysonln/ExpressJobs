@@ -4,15 +4,15 @@
         <div class="top-menu-left">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link nav-icons" (click)="toggleEvent.emit()">
+                    <a class="nav-link nav-icons" (click)="toggleEvent.emit()" role="button">
                         <!-- <i class="bx bx-envelope"></i> -->
                         <mat-icon>menu</mat-icon>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-none d-sm-block">
                     <a class="nav-link nav-box" [routerLink]="['/contactUs']">Contact Us</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-none d-sm-block">
                     <a class="nav-link nav-box" [routerLink]="['/aboutUs']">About Us</a>
                 </li>
             </ul>
