@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from 'src/app/data/services/app.service';
 
 @Component({
   selector: 'app-switcher',

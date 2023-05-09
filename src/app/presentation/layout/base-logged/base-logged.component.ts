@@ -2,7 +2,7 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from 'src/app/data/services/app.service';
 
 @Component({
   selector: 'app-base-logged',

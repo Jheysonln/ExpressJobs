@@ -1,0 +1,64 @@
+<div class="row my-3  align-items-center">
+<div class="col-12 col-sm-8 col-md-8 col-lg-6 my-1">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Buscar.....</mat-label>
+        <input matInput #nombre autocomplete="off"
+            placeholder="Ingrese Nombres o Apellidos">
+        <mat-hint>{{nombre.value.length}} / 50 caracteres</mat-hint>
+    </mat-form-field>
+</div>
+<div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Categorias</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger>
+                {{toppings.value?.[0] || ''}}
+                <span *ngIf="(toppings.value?.length || 0) > 1">
+                    (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ?
+                    'other' : 'others'}})
+                </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Departamento</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Distrito</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Ciudad</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="col-12 col-lg-6 align-items-center btn-center-mat-form-field">
+    <div class="d-flex flex-column flex-sm-row my-auto justify-content-center">
+        <button mat-raised-button color="primary" type="submit"
+            class="j-custom-mat-raised-button-primary j-mat-button-ms-primary m-0 me-sm-4 mb-3 mb-sm-0">Buscar</button>
+        <button mat-raised-button color="accent" type="button"
+            class="j-custom-mat-raised-button-accent j-mat-button-ms-accent">Limpiar</button>
+    </div>
+</div>
+</div>

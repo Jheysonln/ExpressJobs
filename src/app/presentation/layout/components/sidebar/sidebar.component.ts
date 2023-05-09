@@ -14,14 +14,14 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       title: '',
       descripcion: 'Home',
       url: '/home',
-      icon: 'bx bx-briefcase-alt-2',
+      icon: 'bx bx-home',
       subitem: [],
     },
     {
       title: '',
       descripcion: 'Ranking',
       url: '/ranking',
-      icon: 'bx bx-briefcase-alt-2',
+      icon: 'bx bx-line-chart',
       subitem: [],
     },
     {
@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       title: '',
       descripcion: 'Order History',
       url: '/history',
-      icon: 'bx bx-briefcase-alt-2',
+      icon: 'bx bx-show-alt',
       subitem: [],
     },
     {

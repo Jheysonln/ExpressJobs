@@ -8,11 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgApexchartsModule } from 'ng-apexcharts';
-
+import { SearchComponent } from './components/search/search.component';
+import { ServicesOrdersComponent } from './components/services-orders/services-orders.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    SearchComponent,
+    ServicesOrdersComponent
   ],
   imports: [
     CommonModule,

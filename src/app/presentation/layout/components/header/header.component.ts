@@ -1,6 +1,6 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from 'src/app/data/services/app.service';
 
 @Component({
   selector: 'app-header',

@@ -1,9 +1,10 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexPlotOptions, ApexDataLabels, ApexTitleSubtitle, ApexLegend, ApexFill, ApexTooltip, ChartComponent } from 'ng-apexcharts';
 import { Subscription, interval } from 'rxjs';
-import { AppService } from 'src/app/services/app.service';
+import { AppService } from 'src/app/data/services/app.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -29,6 +30,9 @@ export type ChartOptions = {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+ 
+
   @ViewChild("chartAreaPurple", { static: false }) chartAreaPurple!: ChartComponent;
   public chartOptionsAreaPurple?: Partial<ChartOptions> | any;
   @ViewChild("chartAreaInfo", { static: false }) chartAreaInfo!: ChartComponent;
