@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DirectivesModule } from 'src/app/core/directives/directives.module';
 import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { SwiperCarouselComponent } from './components/swiper-carousel/swiper-carousel.component';
+import { SwiperModule } from 'swiper/angular';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
     SwitcherComponent,
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SwiperCarouselComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +32,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ReactiveFormsModule,
     MaterialModule,
     DirectivesModule,
-    OverlayModule
+    OverlayModule,
+    SwiperModule
+  ],
+  
+  exports:[
+    SwiperCarouselComponent,
+    BreadcrumbComponent
   ]
 })
 export class LayoutModule { }

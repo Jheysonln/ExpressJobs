@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { OffersRoutingModule } from './offers-routing.module';
 import { OffersComponent } from './offers.component';
+import { LayoutModule } from 'src/app/presentation/layout/layout.module';
+
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { OffersComponent } from './offers.component';
   ],
   imports: [
     CommonModule,
-    OffersRoutingModule
+    OffersRoutingModule,
+    LayoutModule
   ]
 })
 export class OffersModule { }

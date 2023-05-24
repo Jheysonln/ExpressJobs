@@ -21,15 +21,30 @@ export class JCustomMatMenuDirective {
       }
     });
 
+    // if (matMenuElementRefExists && matMenuElementRefExists.id !== "") {
+    //   const filtertrigger = Object.values(this.triggerList[0]);
+    //   filtertrigger.forEach((trigger: any) => {
+    //     if (trigger['_element'].nativeElement.id === matMenuElementRefExists.id && trigger.menu.hasBackdrop === false) {
+    //       this.unicTrigger = trigger;
+    //       this.openUnicTrigger();
+    //     }
+    //     else {
+    //       if(trigger.menu.hasBackdrop === false){
+    //         this.closeTriggers(trigger);
+    //       }
+    //     }
+    //   });
+    // }
+
     if (matMenuElementRefExists && matMenuElementRefExists.id !== "") {
       const filtertrigger = Object.values(this.triggerList[0]);
       filtertrigger.forEach((trigger: any) => {
-        if (trigger['_element'].nativeElement.id === matMenuElementRefExists.id && trigger.menu.hasBackdrop === false) {
+        if (trigger && trigger['_element'] && trigger['_element'].nativeElement.id === matMenuElementRefExists.id && trigger.menu.hasBackdrop === false) {
           this.unicTrigger = trigger;
           this.openUnicTrigger();
         }
         else {
-          if(trigger.menu.hasBackdrop === false){
+          if(trigger && trigger.menu.hasBackdrop === false){
             this.closeTriggers(trigger);
           }
         }

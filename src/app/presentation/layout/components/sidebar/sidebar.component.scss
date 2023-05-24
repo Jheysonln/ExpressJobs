@@ -1,5 +1,11 @@
+
+ @import '/src/assets/sass/mat-themes.scss';
+$am-mat-primary: mat-color($angular-primary);
+$am-mat-accent: mat-color($angular-accent);
+$am-mat-warn: mat-color($angular-warn);
+
 .sidenav-header {
-	height: 64px;
+	height: 60px;
 	display: grid;
 	justify-content: center;
 	align-items: center;
@@ -57,7 +63,6 @@
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;
 			white-space: normal;
-
 		}
 
 		.user-status {
@@ -152,7 +157,7 @@ ul {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	padding: 10px;
+	padding: 18px;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
@@ -203,9 +208,11 @@ ul {
 			overflow: hidden;
 			letter-spacing: .5px;
 			border: 1px solid #ffffff00;
-			transition: all .3s ease-out;
+			transition: all .1s ease-out;
 			color: inherit;
 			text-decoration: none;
+
+			border-radius: 10px;
 
 			.parent-icon {
 				font-size: 24px;
@@ -230,6 +237,7 @@ ul {
 				top: 50%;
 				transition: all .3s ease-out;
 			}
+			
 		}
 
 		ul {
@@ -260,18 +268,90 @@ ul {
 		}
 	}
 
+	& .mat-active-primary{
+		& a:hover{
+			background: $am-mat-primary;
+			color: white;
+		}
+	}
+	& .mat-active-warn{
+		& a:hover{
+			background:  $am-mat-warn;
+			color: white;
+		}
+	}
+	& .mat-active-accent{
+		& a:hover{
+			background:  $am-mat-accent;
+			color: white;
+		}
+	}
 	a:hover,
 	a:focus,
 	a:active,
-	.mm-active>a {
-		color: #fffffff5;
-		text-decoration: none;
-		background: rgb(8 6 10 / 84%);
-		// font-weight: bold;
-		&:hover {
+	// .mm-active {
+	// 	&.mat-active-primary {
+	// 		&>a {
+	// 			background: $am-mat-primary;
+	// 		}
+	// 	}
+
+	// 	&.mat-active-warn {
+	// 		&>a {
+	// 			background: $am-mat-warn;
+	// 		}
+
+	// 	}
+
+	// 	&.mat-active-accent {
+	// 		&>a {
+	// 			background: $am-mat-accent;
+	// 		}
+
+	// 	}
+
+	// 	&>a {
+	// 		border-radius: 10px;
+	// 		color: #fffffff5;
+	// 		text-decoration: none;
+	// 		// background: $am-mat-primary;
+	// 		&:hover {
+	// 			color: #fffffff5;
+	// 		}
+	// 	}
+	// }
+	.mm-active-two {
+		&.mat-active-primary {
+			&>a {
+				background: $am-mat-primary !important;
+			}
+		}
+
+		&.mat-active-warn {
+			&>a {
+				background: $am-mat-warn;
+			}
+
+		}
+
+		&.mat-active-accent {
+			&>a {
+				background: $am-mat-accent;
+			}
+
+		}
+
+		&>a {
+			border-radius: 10px;
 			color: #fffffff5;
+			text-decoration: none;
+			// background: $am-mat-primary;
+			&:hover {
+				color: #fffffff5;
+			}
 		}
 	}
+
 	.arrow {
 		float: right;
 		line-height: 1.42857

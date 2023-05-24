@@ -1,0 +1,30 @@
+<div class="col-12">
+    <div #carouselContainer class="d-flex flex-column align-items-center justify-content-center"
+        style="min-height: 100%;" #mainSwiper>
+        <swiper [config]="config" class="my-swiper-content" [thumbs]="{ swiper: thumbsSwiper }">
+            <ng-template swiperSlide *ngFor="let slide of slides">
+                <img class="main-swiper" [src]="slide.image" [alt]="slide.alt" />
+                <div class="slide-text" (click)="onImageClick($event)">
+                    <h1 class="mb-0">Implementacion de Ventanas Polarizadas de facil uso</h1>
+                    <p style="text-align:justify;">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                        dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+                        laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+                        Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+                        Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+                        ullamcorper velit.
+                    </p>
+                </div>
+                <div class="swiper-pagination"> </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </ng-template>
+        </swiper>
+    </div>
+    <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="6" [freeMode]="true" class="mySwiper-thumbs"
+        [watchSlidesProgress]="true" [loop]="true" >
+        <ng-template swiperSlide *ngFor="let slide of slides">
+            <img class="thumbs-swiper" [src]="slide.image" [alt]="slide.alt" />
+        </ng-template>
+    </swiper>
+</div>

@@ -3,9 +3,51 @@
 @include mat.all-component-typographies();
 @include mat.core();
 
-$angular-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$my-angular-primary: (
+  50: #e9e5fa,
+  100: #c8c1f0,
+  200: #a698e5,
+  300: #8470d9,
+  400: #6c52d0,
+  500: #8833ff,   // Aquí se utiliza el color personalizado
+  600: #7421cb,
+  700: #6214c3,
+  800: #5a12bf,
+  900: #4e0fb7,
+  A100: #b0a1ff,
+  A200: #7d66ff,
+  A400: #4a2bff,
+  A700: #3217ff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+// $angular-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$angular-primary: mat.define-palette($my-angular-primary);
 $angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $angular-warn: mat.define-palette(mat.$red-palette);
+
+.my-custom-theme {
+  $my-angular-primary: mat.define-palette(mat.$red-palette, 700, 500, 900);
+  $my-angular-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+  $my-angular-warn: mat.define-palette(mat.$blue-palette);
+
+}
+
 $angular-default-theme: mat.define-light-theme((color: (primary: $angular-primary,
         accent: $angular-accent,
         warn: $angular-warn,
@@ -17,6 +59,8 @@ $angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary,
 
       $j-ligth-color : #fff;
       $j-dark-color : #212121;
+
+
 // @mixin _mat-custorm-color($palette) {
 //   background: mat-color($palette);
 //   color: mat-color($palette, default-contrast);
@@ -121,7 +165,7 @@ $angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary,
     top: 0;
     z-index: 1000;
     height: 60px;
-    background: $j-ligth-color;
+    // background: $j-ligth-color;
     border-bottom: 1px solid rgb(228 228 228 / 0%);
     background-clip: border-box;
     box-shadow: 0 0.125rem 0.25rem rgb(136 152 170 / 15%);

@@ -4,25 +4,31 @@ import { Component, HostBinding, OnInit, Renderer2, ViewChild } from '@angular/c
 import { MatDrawer } from '@angular/material/sidenav';
 import { AppService } from 'src/app/data/services/app.service';
 
+import { ThemePalette } from '@angular/material/core';
+
 @Component({
   selector: 'app-base-logged',
   templateUrl: './base-logged.component.html',
   styleUrls: ['./base-logged.component.scss']
 })
-export class BaseLoggedComponent  implements OnInit {
+export class BaseLoggedComponent implements OnInit {
   collapsedNav!: boolean;
   isMovil!: boolean;
   @ViewChild("snav") snav!: MatDrawer;
   @ViewChild("sideNavSwitcher") sNavSwitcher!: MatDrawer;
   @HostBinding('class') className = '';
   sidebarColor: string = "";
+  sidebarScrollColorLigth: string = "";
 
+  color: ThemePalette = 'primary';
 
-  constructor(private breakpointObserver: BreakpointObserver, private overlay: OverlayContainer, private appService: AppService, private renderer: Renderer2) {
-    this.appService.sidebarNewColor.subscribe((color) => this.updateSidebarColor(color));
+  constructor(private breakpointObserver: BreakpointObserver, private overlay: OverlayContainer, private appService: AppService) {
+    // this.appService.sidebarNewColor.subscribe((color) => this.updateSidebarColor(color));
+    this.appService.headerNewColor.subscribe((color) => this.updateSidebarColor(color));
   }
   ngOnInit(): void {
     this.initToogled();
+    this.color = 'accent';
   }
 
   initToogled() {
@@ -32,9 +38,17 @@ export class BaseLoggedComponent  implements OnInit {
     });
   }
 
-  
+
   updateSidebarColor(color: string) {
-    this.sidebarColor = color;
+    if (color == "j-mat-accent") {
+      this.sidebarScrollColorLigth = 'sidebarScrollColorAccent'
+    }
+    else if (color == "j-mat-warn") {
+      this.sidebarScrollColorLigth = 'sidebarScrollColorWarn'
+    }
+    else {
+      this.sidebarScrollColorLigth = 'sidebarScrollColorPrimary'
+    }
   }
 
   //OUTPUT EVENT
@@ -50,7 +64,7 @@ export class BaseLoggedComponent  implements OnInit {
     this.sNavSwitcher.opened = !this.sNavSwitcher.opened;
   }
 
-  btnCloseSidenav(){
+  btnCloseSidenav() {
     if (this.isMovil) {
       this.snav.opened = false;
     }
@@ -85,5 +99,7 @@ export class BaseLoggedComponent  implements OnInit {
 
     localStorage.setItem("themeApp", String(updateTheme));
     this.appService.changeTheme(String(updateTheme));
+
+
   }
 }
