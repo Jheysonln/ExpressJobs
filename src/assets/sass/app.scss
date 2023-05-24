@@ -15,6 +15,13 @@
 @import './mat-themes.scss';
 @import './custom-scroll.scss';
 @import '@sweetalert2/theme-dark/dark.scss';
+/* Agrega los estilos de Swiper */
+@import "/node_modules/swiper/swiper.min.css";
+/* Agrega los estilos de los componentes adicionales que desees utilizar, por ejemplo: */
+@import "/node_modules/swiper/modules/pagination/pagination.min.css";
+@import "/node_modules/swiper/modules/navigation/navigation.min.css";
+
+
 
 //#ANGULAR MATERIAL#//
 $am-mat-primary: mat-color($angular-primary);
@@ -141,6 +148,18 @@ $b-dark : $dark;
         display: block;
     }
 }
+
+// SWIPER PAGINATION
+.swiper-pagination-bullet-active{
+    background: #fff;
+}
+.swiper-slide.swiper-slide-visible{
+    opacity: 0.4;
+    &.swiper-slide-thumb-active{
+        opacity: 1;
+    }
+}
+
 
 //POR ENCIMA DE MD
 @include media-breakpoint-up(md) {

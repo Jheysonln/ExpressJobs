@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+
+import {  ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+interface Breadcrumb {
+  label: string;
+  url: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +21,16 @@ export class AppService {
   private header = new BehaviorSubject<string>('');
   public headerNewColor = this.header.asObservable();
 
-  private sidebar = new BehaviorSubject<string>('');
-  public sidebarNewColor = this.sidebar.asObservable();
+  private breadcrumbsSubject: BehaviorSubject<Breadcrumb[]> = new BehaviorSubject<Breadcrumb[]>([]);
+  public breadcrumbs$: Observable<Breadcrumb[]> = this.breadcrumbsSubject.asObservable();
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.setBreadcrumb();
+  }
+
+  public getBreadcrumbs$(): Observable<Breadcrumb[]> {
+    return this.breadcrumbs$;
+  }
 
   public changeTheme(theme:string): void  {
     this.theme.next(theme);
@@ -25,7 +40,30 @@ export class AppService {
     this.header.next(color);
   }
 
-  public changeSidebarColor(color:string): void  {
-    this.sidebar.next(color);
+  setBreadcrumb(){
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => this.router.routerState.root.snapshot),
+      map((route: ActivatedRouteSnapshot) => {
+        const breadcrumbs: Breadcrumb[] = [];
+        while (route) {
+          if (route.data && route.data['breadcrumb']) {
+            const url = route.pathFromRoot
+              .map(v => v.url.map(segment => segment.toString()).join('/'))
+              .filter(path => path !== '')
+              .join('/');
+            const breadcrumb: Breadcrumb = {
+              label: route.data['breadcrumb'],
+              url: `/${url}`
+            };
+            breadcrumbs.push(breadcrumb);
+          }
+          route = route.firstChild!;
+        }
+        return breadcrumbs;
+      })
+    ).subscribe(breadcrumbs => {
+      this.breadcrumbsSubject.next(breadcrumbs);
+    });
   }
 }

@@ -33,8 +33,8 @@ export class SwitcherComponent implements OnInit{
     this.appService.changeHeaderColor(String(color));
   }
 
-  setSidebarColor(event:MouseEvent){
-    const color = (event.target as HTMLDivElement).id;
-    this.appService.changeSidebarColor(String(color));
-  }
+  // setSidebarColor(event:MouseEvent){
+  //   const color = (event.target as HTMLDivElement).id;
+  //   this.appService.changeSidebarColor(String(color));
+  //}
 }

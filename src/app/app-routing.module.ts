@@ -34,18 +34,21 @@ const routes: Routes = [
         children:[
             {
                 path:'home',
+                data: { breadcrumb: 'home' } ,
                 loadChildren:() => import('./presentation/features/page/home/home.module').then(
                     (m) => m.HomeModule
                 )
             },
             {
                 path:'ranking',
+                data: { breadcrumb: 'ranking' } ,
                 loadChildren:() => import('./presentation/features/page/ranking/ranking.module').then(
                     (m) => m.RankingModule
                 )
             },
             {
                 path:'offers',
+                data: { breadcrumb: 'offers' } ,
                 loadChildren:() => import('./presentation/features/page/offers/offers.module').then(
                     (m) => m.OffersModule
                 )

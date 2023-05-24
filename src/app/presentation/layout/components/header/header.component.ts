@@ -1,6 +1,10 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { AppService } from 'src/app/data/services/app.service';
+import { setMaterialColor } from 'src/assets/utilities/app';
+
+
 
 @Component({
   selector: 'app-header',
@@ -47,8 +51,11 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   triggers!: any[];
   headerColor: string = "";
 
-  constructor(private cdref: ChangeDetectorRef, private appService: AppService) {
-    this.appService.headerNewColor.subscribe((color) => this.updateHeaderColor(color));
+  matColor: ThemePalette = 'primary';
+  
+  constructor( private appService: AppService) {
+    // this.appService.headerNewColor.subscribe((color) => this.updateHeaderColor(color));
+    this.appService.headerNewColor.subscribe((color) => this.matColor = setMaterialColor(color));
   }
 
   ngOnInit(): void {
@@ -67,9 +74,4 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   matMenuTriggersList(): any[] {
     return this.triggers;
   }
-
-  updateHeaderColor(color: string) {
-    this.headerColor = color;
-  }
-
 }

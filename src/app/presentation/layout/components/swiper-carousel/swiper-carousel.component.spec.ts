@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersComponent } from './users.component';
+import { SwiperCarouselComponent } from './swiper-carousel.component';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+describe('SwiperCarouselComponent', () => {
+  let component: SwiperCarouselComponent;
+  let fixture: ComponentFixture<SwiperCarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ SwiperCarouselComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(SwiperCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

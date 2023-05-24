@@ -1,5 +1,5 @@
 <mat-drawer-container>
-    <mat-drawer [class]="'mat-drawer-color ' + sidebarColor" #snav [mode]="isMovil ? 'over' : 'side'"
+    <mat-drawer [class]="'mat-drawer-color ' + sidebarColor + sidebarScrollColorLigth" #snav [mode]="isMovil ? 'over' : 'side'"
         [opened]="!isMovil" [ngClass]="{ 'sidenav-collapsed': collapsedNav && !isMovil}">
         <app-sidebar [collapsedNav]="collapsedNav" [isMovil]="isMovil" (toggleEventCloseSidenav)="btnCloseSidenav()">
         </app-sidebar>

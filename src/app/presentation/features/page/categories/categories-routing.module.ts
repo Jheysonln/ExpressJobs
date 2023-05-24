@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: CategoriesComponent,
   },
-  {path:'',redirectTo:'home',pathMatch:"prefix"}
+  {path:'',redirectTo:'',pathMatch:"prefix"}
 ];
 
 @NgModule({

@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'users',
-    loadChildren: () => import('./users/users.module').then(
+    loadChildren: () => import('../reports/users/users.module').then(
       (m) => m.UsersModule
     )
   },
   {
     path: 'categories',
-    loadChildren: () => import('./categories/categories.module').then(
+    loadChildren: () => import('../reports/categories/categories.module').then(
       (m) => m.CategoriesModule
 
     )

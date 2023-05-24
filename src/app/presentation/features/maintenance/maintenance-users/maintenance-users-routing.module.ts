@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesComponent } from './categories.component';
+import { MaintenanceUsersComponent } from './maintenance-users.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoriesComponent,
-  }
+    component: MaintenanceUsersComponent,
+  },
+  {path:'',redirectTo:'',pathMatch:"prefix"}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CategoriesRoutingModule { }
+export class MaintenanceUsersRoutingModule { }
