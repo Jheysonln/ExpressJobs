@@ -1,0 +1,74 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+div#general{
+    margin: auto;
+    width: 1250px;
+    height: 900px;
+    border: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+div#prueba{
+    float: right;
+    width: 300px;
+    height: 500px;
+
+}
+
+div#bloque1{
+    margin-top: 10px;
+    margin-left: 50%;
+    width: 70px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+div#bloque2{
+    margin-left: 200px;
+    width: 150px;
+    height: 50px;
+}
+
+
+div#prueba1{
+    margin-top: 30px;
+    width: 850px;
+    height: 900px;
+
+}
+
+div#prueba2{
+    margin-top: 18px;
+    width: 300px;
+    height: 300px;
+
+}
+
+div#prueba3{ 
+    margin-top: 150px;
+    width: 300px;
+    height: 300px;
+}
+
+.boton{
+    
+        border: 1px solid #2e518b; 
+        padding: 10px; 
+        background-color: #2e518b; 
+        color: #ffffff; 
+        text-decoration: none; 
+        text-transform: uppercase;
+        font-family: 'Helvetica', sans-serif; 
+        border-radius: 50px;
+        
+}
+
+.textbox{
+  width: 250px;  
+  border-radius: 5px;
+  border: 1px solid;
+}
