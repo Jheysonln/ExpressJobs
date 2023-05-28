@@ -9,7 +9,6 @@ interface Breadcrumb {
   url: string;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
