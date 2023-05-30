@@ -49,26 +49,6 @@ export class LoginComponent implements OnInit {
   login() {
 
     const headers = new HttpHeaders()
-    .append(
-      'Access-Control-Allow-Origin',
-      '*'
-    )
-    .append(
-      'Access-Control-Allow-Methods',
-      'DELETE, POST, GET, OPTIONS'
-    )
-    .append(
-      'Access-Control-Allow-Headers',
-      'Content-Type, Authorization, X-Requested-With'
-    )
-    .append(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    )
-    .append(
-      'Access-Control-Allow-Credentials',
-      'true'
-    );
 
     const body = {};
 
@@ -77,7 +57,7 @@ export class LoginComponent implements OnInit {
         .append('password', this.password)
 
     this.http
-    .post<any>('http://localhost:8080/usuario/login', body, {
+    .post<any>('http://localhost:8080/api/seguridad/login', body, {
         headers: headers,
         params: params,
     })
