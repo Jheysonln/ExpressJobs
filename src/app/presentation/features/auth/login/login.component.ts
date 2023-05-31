@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
+    this.router.navigate(['/home']);
     const headers = new HttpHeaders()
 
     const body = {};
@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
     .subscribe((res) => {
 
       if(res.respuesta==='ok'){
+        console.log(res);
         this.router.navigate(['/home']);
       }else{
         console.log('error login');

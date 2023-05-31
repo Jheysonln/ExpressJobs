@@ -1,0 +1,18 @@
+<div class="d-flex pb-2 main-content">
+  <div class="d-flex">
+    <ng-container *ngFor="let url of urls">
+      <div class="image-container">
+        <img [src]="url" class="gallery-image" alt="Image" (click)="openFullScreen(url)">
+        <span class="remove-icon" (click)="removeImage(url)">
+          <i class="fa fa-times"></i>
+        </span>
+      </div>
+    </ng-container>
+  </div>
+  <div class="add-image" *ngIf="urls.length < maxImages">
+    <label for="upload">
+      <span class="fa fa-plus"></span>
+      <input type="file" (change)="onSelectFile($event)" multiple hidden id="upload">
+    </label>
+  </div>
+</div>

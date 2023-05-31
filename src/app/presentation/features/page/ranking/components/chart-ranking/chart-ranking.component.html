@@ -1,0 +1,79 @@
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div *ngIf="loadingChartSpinner; else contentchartCircle">
+            <mat-progress-spinner diameter="20" [value]="valueChartSpinner"
+                mode="indeterminate">
+            </mat-progress-spinner>
+        </div>
+        <ng-template #contentchartCircle>
+            <apx-chart class="row" #chartCircle [series]="chartOptionsCircle?.series"
+                [chart]="chartOptionsCircle?.chart"
+                [plotOptions]="chartOptionsCircle?.plotOptions"
+                [labels]="chartOptionsCircle?.labels">
+            </apx-chart>
+        </ng-template>
+    </div> 
+</div>
+<div class="row align-items-center py-2">
+    <div class="col-auto">
+        <p class="mb-0">Sales</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">1580</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">875</p>
+    </div>
+    <div class="col">
+        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+    </div>
+</div>
+<div class="row align-items-center py-2">
+    <div class="col-auto">
+        <p class="mb-0">Users</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">1852</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">356</p>
+    </div>
+    <div class="col">
+        <mat-progress-bar class="mat-accent" mode="determinate" value="80"></mat-progress-bar>
+    </div>
+</div>
+<div class="row align-items-center py-2">
+    <div class="col-auto">
+        <p class="mb-0">Visits</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">1280</p>
+    </div>
+    <div class="col-auto">
+        <p class="mb-0">867</p>
+    </div>
+    <div class="col">
+        <mat-progress-bar class="mat-warn" mode="determinate" value="60"></mat-progress-bar>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="w-100 h-100">
+            <div class="h-100 d-flex flex-column align-content-center justify-content-center">
+                <div class="col-md-12 pt-5 text-center">
+                    <img src="../../../../../../../assets/images/avatars/avatar-1.png" width="110" height="110" class="rounded-circle shadow" alt="">
+                    <h2 class="mb-0 mt-5">Pauline I. Bird</h2>
+                    <p class="mb-3 text-secondary">Webdeveloper</p>
+                      <div class="list-inline contacts-social mt-3 mb-3"> 
+                        <a class="list-inline-item bg-facebook text-white border-0"><i class="bx bxl-facebook"></i></a>
+                        <a class="list-inline-item bg-twitter text-white border-0"><i class="bx bxl-twitter"></i></a>
+                        <a class="list-inline-item bg-google text-white border-0"><i class="bx bxl-google"></i></a>
+                        <a class="list-inline-item bg-linkedin text-white border-0"><i class="bx bxl-linkedin"></i></a>
+                    </div>
+                </div>
+                <button class="m-2 j-custom-mat-stroked-button-primary j-mat-button-ms-primary j-mat-button-border-radius" mat-stroked-button color="primary">Contratar</button>
+            </div>
+        </div>
+    </div> 
+</div>

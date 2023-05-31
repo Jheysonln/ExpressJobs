@@ -26,6 +26,17 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     {
       id:2,
       title: '',
+      descripcion: 'Search Service',
+      url: '/search-service',
+      icon: 'bx bx-home',
+      provided: '',
+      active:false,
+      classActive:'',
+      subitem: [],
+    },
+    {
+      id:3,
+      title: '',
       descripcion: 'Ranking',
       url: '/ranking',
       icon: 'bx bx-line-chart',
@@ -35,7 +46,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [],
     },
     {
-      id:3,
+      id:4,
       title: '',
       descripcion: 'Offers',
       url: '/offers',
@@ -46,7 +57,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [],
     },
     {
-      id:4,
+      id:5,
       title: '',
       descripcion: 'Order History',
       url: '/history',
@@ -57,7 +68,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [],
     },
     {
-      id:5,
+      id:6,
       title: '',
       descripcion: 'Services Provided',
       url: '/services',
@@ -68,7 +79,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [],
     },
     {
-      id:6,
+      id:7,
       title: 'Settings',
       descripcion: '',
       url: '',
@@ -79,7 +90,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [],
     },
     {
-      id:7,
+      id:8,
       title: '',
       descripcion: 'Maintenance',
       url: '',
@@ -90,7 +101,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [
         {
           id:1,
-          idMenu:7,
+          idMenu:8,
           descripcion: 'Users',
           url: '/maintenance/users',
           active: false,
@@ -98,7 +109,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
         },
         {
           id:2,
-          idMenu:7,
+          idMenu:8,
           descripcion: 'Categories',
           url: '/maintenance/categories',
           active: false,
@@ -107,7 +118,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       ],
     },
     {
-      id:8,
+      id:9,
       title: '',
       descripcion: 'Reports',
       url: '',
@@ -118,7 +129,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       subitem: [
         {
           id:1,
-          idMenu:8,
+          idMenu:9,
           descripcion: 'Users',
           url: '/reports/users',
           active: false,
@@ -126,7 +137,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
         },
         {
           id:2,
-          idMenu:8,
+          idMenu:9,
           descripcion: 'Categories',
           url: '/reports/categories',
           active: false,

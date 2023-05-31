@@ -40,6 +40,13 @@ const routes: Routes = [
                 )
             },
             {
+                path:'search-service',
+                data: { breadcrumb: 'Search Service' } ,
+                loadChildren:() => import('./presentation/features/page/search-service/search-service.module').then(
+                    (m) => m.SearchServiceModule
+                )
+            },
+            {
                 path:'ranking',
                 data: { breadcrumb: 'ranking' } ,
                 loadChildren:() => import('./presentation/features/page/ranking/ranking.module').then(

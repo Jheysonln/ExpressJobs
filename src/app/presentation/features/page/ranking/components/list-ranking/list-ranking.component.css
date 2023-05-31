@@ -1,0 +1,21 @@
+
+   .image-container {
+    background-color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .gallery-image {
+    max-width: 100%;
+    /* width: 120px; */
+    height: 170px;
+    /* min-height: 150px; */
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+ 

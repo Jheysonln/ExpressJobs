@@ -1,0 +1,52 @@
+<div class="row my-3 align-items-center">
+    <div class="col-12 col-sm-6 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Especialidad</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-6 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Promedio</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-6 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Departamento</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-6 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Distrito</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-6 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Ciudad</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
