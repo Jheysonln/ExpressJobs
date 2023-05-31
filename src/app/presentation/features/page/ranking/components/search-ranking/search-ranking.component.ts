@@ -3,12 +3,14 @@ import { FormControl } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { AppService } from 'src/app/data/services/app.service';
 import { setMaterialColor } from 'src/assets/utilities/app';
+
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-search-ranking',
+  templateUrl: './search-ranking.component.html',
+  styleUrls: ['./search-ranking.component.css']
 })
-export class SearchComponent {
+export class SearchRankingComponent {
+
   foods: any[] = [
     { value: 1, viewValue: 'Delantero' },
     { value: 2, viewValue: 'Arquero' },

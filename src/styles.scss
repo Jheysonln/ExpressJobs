@@ -22,8 +22,12 @@ body {
     // padding: 0;
 }
 
-:root {
-    --primary-color: #007bff;
-    --accent-color: #ffc107;
-    --warn-color: #dc3545;
+  
+.mat-mdc-progress-bar {
+    height: 10px;
+    border-radius: 10px;
+  }
+  
+  .mdc-linear-progress__bar-inner {
+    border-top-width: 10px !important;
   }

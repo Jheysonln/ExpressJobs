@@ -1,0 +1,158 @@
+<div class="container">
+    <app-breadcrumb></app-breadcrumb>
+    <div class="row row-cols-1 mb-3">
+        <div class="col">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-header class="m-0">
+                    <mat-card-title>Información del solicitante</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row my-3  align-items-center">
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Nombres</mat-label>
+                                <input matInput #nombre autocomplete="off" disabled>
+                                <mat-hint>{{nombre.value.length}} / 50 caracteres</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Apellidos</mat-label>
+                                <input matInput #apellido autocomplete="off" disabled>
+                                <mat-hint>{{apellido.value.length}} / 50 caracteres</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Telefono</mat-label>
+                                <input matInput #nombre autocomplete="off" disabled>
+                                <mat-hint>{{nombre.value.length}} / 50 caracteres</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Edad</mat-label>
+                                <input matInput #edad autocomplete="off" disabled>
+                                <mat-hint>{{edad.value.length}} / 50 caracteres</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Direccion</mat-label>
+                                <input matInput #direccion autocomplete="off" disabled>
+                                <mat-hint>{{direccion.value.length}} / 50 caracteres</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Departamento</mat-label>
+                                <mat-select disabled>
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Distrito</mat-label>
+                                <mat-select disabled>
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 my-1">
+                            <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                <mat-label>Ciudad</mat-label>
+                                <mat-select disabled>
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row row-cols-1 mb-3">
+        <div class="col">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-header class="m-0">
+                    <mat-card-title>Servicio a Realizar</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row my-1 align-items-center justify-content-center">
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-8 my-2">
+                            <div class="d-flex flex-column">
+                                <div class="col-12 px-md-2 px-xl-0">
+                                    <h3 class="mb-2">Seleccione la ubicación donde se realizará el servicio: </h3>
+                                    <google-map [options]="options!" width="100%" height="400px">
+                                        <map-marker *ngFor="let marker of markers" [position]="marker.position"
+                                            [label]="marker.label" [title]="marker.title"></map-marker>
+                                    </google-map>
+                                </div>
+                                <div class="col-12 pt-3 px-md-2 px-xl-0">
+                                    <h3 class="mb-2">Agrege imagenes de referencia para un mejor acuerdo <b>(Max. 5)</b>: </h3>
+                                    <app-gallery-img1></app-gallery-img1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-xl-4 my-1">
+                            <h3 class="mb-2 d-xl-none px-md-2 px-xl-0">Datos Obligatorios: </h3>
+                            <div class="d-flex flex-wrap flex-column flex-md-row flex-xl-column">
+                                <div class="col-12 col-md-6 col-xl-12 px-md-2 px-xl-0">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>Fecha de elaboración</mat-label>
+                                        <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY"
+                                            autocomplete="off" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-12 px-md-2 px-xl-0">
+                                    <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                        <mat-label>Servicio(s) a realizar</mat-label>
+                                        <mat-select [formControl]="toppings" multiple>
+                                            <mat-select-trigger>
+                                                {{toppings.value?.[0] || ''}}
+                                                <span *ngIf="(toppings.value?.length || 0) > 1">
+                                                    (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length ===
+                                                    2 ?
+                                                    'other' : 'others'}})
+                                                </span>
+                                            </mat-select-trigger>
+                                            <mat-option *ngFor="let topping of toppingList" [value]="topping">
+                                                {{topping}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-12 px-md-2 px-xl-0">
+                                    <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+                                        <mat-label>Breve Descripción</mat-label>
+                                        <textarea matInput #nombre autocomplete="off" rows="10"
+                                            placeholder="Ingrese un resumen de lo que necesite, recuerde ser lo más específico posible."></textarea>
+                                        <mat-hint>{{nombre.value.length}} / 150 caracteres</mat-hint>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-12 px-md-2 px-xl-0 align-items-center align-self-center pt-3">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <button mat-raised-button color="primary" type="submit"
+                                            class="j-custom-mat-raised-button-primary j-mat-button-ms-primary mb-3">Enviar
+                                            Solicitud</button>
+                                        <button mat-raised-button color="accent" type="button"
+                                            class="j-custom-mat-raised-button-accent j-mat-button-ms-accent">Volver</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

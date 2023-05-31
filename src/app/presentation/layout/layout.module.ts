@@ -14,6 +14,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { SwiperCarouselComponent } from './components/swiper-carousel/swiper-carousel.component';
 import { SwiperModule } from 'swiper/angular';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { GalleryImg1Component } from './components/gallery-img/gallery-img1/gallery-img1.component';
+import { FullScreenComponent } from './components/gallery-img/full-screen/full-screen.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     HeaderComponent,
     FooterComponent,
     SwiperCarouselComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    GalleryImg1Component,
+    FullScreenComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
   
   exports:[
     SwiperCarouselComponent,
+    GalleryImg1Component,
     BreadcrumbComponent
   ]
 })

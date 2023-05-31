@@ -1,0 +1,23 @@
+<div class="j-custom-scroll">
+    <div class="init-scroll ps-0" style="max-height: 300px;">
+        <mat-list role="list">
+            <mat-list-item role="listitem" class="h-100 py-2" *ngFor="let country of countries">
+                <img class="my-auto" [src]="country.flag" matListItemAvatar>
+                <div class="d-flex flex-wrap align-items-center text-wrap">
+                    <div class="w-100 d-inline-flex overflow-hidden">
+                        <p class="mat-body-strong text-truncate mb-0">{{country.name}}</p>
+                        <small class="mat-caption text-truncate ms-auto">2 hr Ago</small>
+                    </div>
+                    <small class="mat-body-strong ms-auto text-secondary">Many desktop
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, mollitia? Labore, necessitatibus,
+                        odio ut corporis perferendis ipsum eaque accusantium numquam cum facere exercitationem sapiente
+                        inventore autem eum rerum quasi sequi.
+                    </small>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="find-scroll"></div>
+</div>
+
+
