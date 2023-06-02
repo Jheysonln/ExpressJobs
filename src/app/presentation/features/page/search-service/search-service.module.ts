@@ -15,6 +15,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImagePreviewDirective } from 'src/app/core/directives/image-preview.directive';
 import { DirectivesModule } from 'src/app/core/directives/directives.module';
+import { ViewProjectComponent } from './add-service/view-project/view-project.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DirectivesModule } from 'src/app/core/directives/directives.module';
     OrdersComponent,
     SearchComponent,
     SearchServiceComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    ViewProjectComponent
   ],
   imports: [
     CommonModule,

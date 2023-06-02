@@ -16,6 +16,7 @@ import { SwiperModule } from 'swiper/angular';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { GalleryImg1Component } from './components/gallery-img/gallery-img1/gallery-img1.component';
 import { FullScreenComponent } from './components/gallery-img/full-screen/full-screen.component';
+import { InfoModule } from '../features/info/info.module';
 
 @NgModule({
   declarations: [
@@ -37,13 +38,13 @@ import { FullScreenComponent } from './components/gallery-img/full-screen/full-s
     MaterialModule,
     DirectivesModule,
     OverlayModule,
-    SwiperModule
+    SwiperModule,
+    InfoModule
   ],
   
   exports:[
     SwiperCarouselComponent,
-    GalleryImg1Component,
-    BreadcrumbComponent
+    GalleryImg1Component
   ]
 })
 export class LayoutModule { }

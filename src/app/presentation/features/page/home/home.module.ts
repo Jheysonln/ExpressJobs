@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SwiperModule } from 'swiper/angular';
 import { LayoutModule } from 'src/app/presentation/layout/layout.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LayoutModule } from 'src/app/presentation/layout/layout.module';
     HttpClientModule,
     ReactiveFormsModule,
     SwiperModule,
-    LayoutModule
+    NgApexchartsModule
   ],
 })
 export class HomeModule { }

@@ -20,6 +20,7 @@ export class AppService {
   private header = new BehaviorSubject<string>('');
   public headerNewColor = this.header.asObservable();
 
+
   private breadcrumbsSubject: BehaviorSubject<Breadcrumb[]> = new BehaviorSubject<Breadcrumb[]>([]);
   public breadcrumbs$: Observable<Breadcrumb[]> = this.breadcrumbsSubject.asObservable();
 
@@ -57,7 +58,7 @@ export class AppService {
   }
   //Fin Imagen en Full Screen
 
-  setBreadcrumb() {
+ setBreadcrumb() {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this.router.routerState.root.snapshot),

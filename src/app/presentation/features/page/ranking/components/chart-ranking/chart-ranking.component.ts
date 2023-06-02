@@ -58,7 +58,7 @@ export class ChartRankingComponent {
       speedChart = 400;
       this.setCharts(themeColor,speedChart);
     }
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   setCharts(themeColor: string,speedChart:number) {

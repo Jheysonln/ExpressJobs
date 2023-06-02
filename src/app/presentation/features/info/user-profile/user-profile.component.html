@@ -1,1 +1,170 @@
-<p>user-profile works!</p>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-4">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-content>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="w-100 h-100">
+                                    <div class="h-100 d-flex flex-column align-content-center justify-content-center">
+                                        <div class="col-md-12 pt-5 text-center">
+                                            <img src="../../../../../../../assets/images/avatars/avatar-1.png"
+                                                width="110" height="110" class="rounded-circle shadow" alt="">
+                                            <h2 class="mb-0 mt-5">Pauline I. Bird</h2>
+                                            <p class="mb-3 text-secondary">Webdeveloper</p>
+                                            <!--   <div class="list-inline contacts-social mt-3 mb-3"> 
+                                                <a class="list-inline-item bg-facebook text-white border-0"><i class="bx bxl-facebook"></i></a>
+                                                <a class="list-inline-item bg-twitter text-white border-0"><i class="bx bxl-twitter"></i></a>
+                                                <a class="list-inline-item bg-google text-white border-0"><i class="bx bxl-google"></i></a>
+                                                <a class="list-inline-item bg-linkedin text-white border-0"><i class="bx bxl-linkedin"></i></a>
+                                            </div> -->
+                                            <div class="d-flex align-items-center my-3 fs-6 justify-content-center">
+                                                <div class="cursor-pointer">
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                    <i class="bx bxs-star text-secondary"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-8">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-content>
+                    <div class="container-fluid  pt-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label class="fw-bold">Nombre</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Correo Electronico"
+                                        autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label class="fw-bold">Apellido</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Correo Electronico"
+                                        autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Correo Electronico"
+                                        autocomplete="off" name="nombreForm" minlength="5" maxlength="50" textOnly
+                                        required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
+                                        maxlength="50" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Confirm Password</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
+                                        maxlength="50" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input matInput>
+                                    <button mat-icon-button matSuffix [matMenuTriggerFor]="prefixOptionsMenu" class="fs-6" style="width: auto;">
+                                      {{ selectedOption || selectedPrefix }}   
+                                        <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+                                    </button>
+                                    <mat-menu #prefixOptionsMenu="matMenu">
+                                      <button mat-menu-item *ngFor="let option of prefixOptions" (click)="onChangeOption(option)">
+                                        {{ option }}
+                                      </button>
+                                    </mat-menu>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Documento</mat-label>
+                                    <input matInput>
+                                    <button mat-icon-button matSuffix [matMenuTriggerFor]="prefixOptionsMenu" class="fs-6" style="width: auto;">
+                                      {{ selectedOption || selectedPrefix }}   
+                                        <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+                                    </button>
+                                    <mat-menu #prefixOptionsMenu="matMenu">
+                                      <button mat-menu-item *ngFor="let option of prefixOptions" (click)="onChangeOption(option)">
+                                        {{ option }}
+                                      </button>
+                                    </mat-menu>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="w-100" >
+                                    <mat-label>Departamento</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                                            {{food.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Distrito</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                                            {{food.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Provincia</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                                            {{food.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Dirección</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
+                                        maxlength="50" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 col-xl-12 d-flex flex-column">
+            <mat-card class="text-break mb-3">
+                <mat-card-header class="m-0">
+                    <mat-card-title>Recent Orders</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="container-fluid">
+                        <div class="py-2">
+
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

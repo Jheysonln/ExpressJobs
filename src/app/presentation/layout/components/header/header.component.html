@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col col-12 mb-2">
+                        <div class="col col-12">
                             <mat-list>
                                 <mat-list-item class="p-0">
                                     <div matListItemLine>
@@ -184,9 +184,12 @@
                                 </mat-list-item>
                             </mat-list>
                         </div>
+                        <!-- profile -->
                         <div class="col col-12 d-flex flex-column">
-                            <button mat-raised-button class="mb-2" color="primary">Edit Profile</button>
-                            <button mat-raised-button class="mb-2" color="warn">Close sesión</button>
+                            <button mat-raised-button color="primary" type="submit"
+                            class="j-custom-mat-raised-button-primary j-mat-button-ms-primary mb-3" [routerLink]="['/profile']">Edit Profile</button>
+                            <button mat-raised-button color="warn" type="button"
+                            class="j-custom-mat-raised-button-warn j-mat-button-ms-warn mb-2" [routerLink]="['/auth/login']">Close sesión</button>
                         </div>
                     </div>
                 </div>

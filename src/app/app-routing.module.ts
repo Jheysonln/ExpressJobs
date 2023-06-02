@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './presentation/features/info/about-us/about-us.component';
 import { ContactUsComponent } from './presentation/features/info/contact-us/contact-us.component';
+import { UserProfileComponent } from './presentation/features/info/user-profile/user-profile.component';
 import { BaseAuthComponent } from './presentation/layout/base-auth/base-auth.component';
 import { BaseLoggedComponent } from './presentation/layout/base-logged/base-logged.component';
 
@@ -62,12 +63,14 @@ const routes: Routes = [
             },
             {
                 path:'history',
+                data: { breadcrumb: 'Histoy Orders' } ,
                 loadChildren:() => import('./presentation/features/page/orders-history/orders-history.module').then(
                     (m) => m.OrdersHistoryModule
                 )
             },
             {
                 path:'services',
+                data: { breadcrumb: 'Services Provided' } ,
                 loadChildren:() => import('./presentation/features/page/services-provided/services-provided.module').then(
                     (m) => m.ServicesProvidedModule
                 )
@@ -86,11 +89,18 @@ const routes: Routes = [
             },
             {
                 path:'aboutUs',
+                data: { breadcrumb: 'About Us' } ,
                 component:AboutUsComponent
             },
             {
                 path:'contactUs',
+                data: { breadcrumb: 'Contact Us' } ,
                 component:ContactUsComponent
+            },
+            {
+                path:'profile',
+                data: { breadcrumb: 'Profile' } ,
+                component:UserProfileComponent
             },
             {path:'',redirectTo:'home',pathMatch:"prefix"}
         ]

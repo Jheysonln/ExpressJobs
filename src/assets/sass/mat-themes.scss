@@ -1331,4 +1331,8 @@ $angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary,
   .j-custom-border {
     border: 2px solid white;
   }
+
+  mat-accordion .mat-expansion-panel.j-mat-expansion-panel{
+    background: #212121;
+  }
 }
