@@ -1,0 +1,57 @@
+.container{
+ margin: auto;
+}
+.section_2{
+width: 75%;
+margin: auto;
+padding: 75px 0;
+}
+.section_2-title{
+font-family: 'roboto','sans-serif';
+font-size: 40px;
+color: red;
+font-weight: bold;
+margin: 25px 0;
+
+}
+.us{
+display: flex;
+}
+.us-text{
+width: 60%;
+padding: 0 10% 0 0;
+}
+.us-paragraph{
+font-family: 'roboto','sans-serif';
+font-size: 18px;
+color: #505050;
+text-align: justify;
+}
+.paragraph-text{
+margin: 10px 0;
+}
+.us-rs{
+margin: 20px 0;
+
+}
+.us-rs-title{
+font-family: 'roboto','sans-serif';
+font-size: 20px;
+color: red;
+font-weight: bold;
+margin: 20px 0;
+}
+.rs-icon{
+margin: 0px 0;
+}
+.rs-link{
+margin: 0 10px;
+}
+.us-img{
+width: 40%;
+}
+.img-img{
+object-fit: cover;
+width: 100%;
+border-radius: 5px;
+}
