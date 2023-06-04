@@ -25,9 +25,20 @@
     <div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
         <mat-form-field appearance="outline" class="w-100" [color]="matColor">
             <mat-label>Departamento</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
+            <mat-select [value]="idDepartamento" (selectionChange)="obtenerProvincias($event.value)">
+                
+                <mat-option *ngFor="let departamento of departamentos" [value]="departamento.id_ubigeo">
+                    {{departamento.nombre_ubigeo}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
+        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
+            <mat-label>Provincia</mat-label>
+            <mat-select [value]="idProvincia" (selectionChange)="obtenerDistritos($event.value)">
+                <mat-option *ngFor="let provincia of listaProvincias" [value]="provincia.id_ubigeo">
+                    {{provincia.nombre_ubigeo}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -36,18 +47,8 @@
         <mat-form-field appearance="outline" class="w-100" [color]="matColor">
             <mat-label>Distrito</mat-label>
             <mat-select>
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="col-12 col-sm-4 col-md-4 col-lg-3 my-1">
-        <mat-form-field appearance="outline" class="w-100" [color]="matColor">
-            <mat-label>Ciudad</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
+                <mat-option *ngFor="let distrito of listaDistritos" [value]="distrito.id_ubigeo">
+                    {{distrito.nombre_ubigeo}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
