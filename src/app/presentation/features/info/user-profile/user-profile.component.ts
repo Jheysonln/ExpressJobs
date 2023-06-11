@@ -35,7 +35,6 @@ export class UserProfileComponent implements OnInit {
   id_provincia = '';
 
   ngOnInit(): void {
-    this.obtenerUsuario();
     this.obtenerDepartamentos();
   }
   constructor(
