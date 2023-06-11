@@ -7,7 +7,7 @@ import { AppService } from 'src/app/data/services/app.service';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { UserService } from 'src/app/data/services/user/user.service';
 
-
+import{ GlobalConstants } from '../../../../common/global-constants';
 
 
 @Component({
@@ -16,6 +16,8 @@ import { UserService } from 'src/app/data/services/user/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterContentChecked {
+
+  appUsername = GlobalConstants.appUsername;
 
   @Output() themeEvent = new EventEmitter<boolean | null>();
   @Output() toggleEvent = new EventEmitter<void>();

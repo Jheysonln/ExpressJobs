@@ -95,14 +95,14 @@
                                 <mat-form-field appearance="outline" class="mb-3 w-100">
                                     <mat-label class="fw-bold">Nombre</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Correo Electronico"
-                                        autocomplete="off">
+                                        autocomplete="off" value={{nom_usuario}} [(ngModel)]="nom_usuario">
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <mat-form-field appearance="outline" class="mb-3 w-100">
                                     <mat-label class="fw-bold">Apellido</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Correo Electronico"
-                                        autocomplete="off">
+                                        autocomplete="off" value={{ape_usuario}}>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -110,21 +110,21 @@
                                     <mat-label class="fw-bold">Email</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Correo Electronico"
                                         autocomplete="off" name="nombreForm" minlength="5" maxlength="50" textOnly
-                                        required>
+                                        required value={{correo_usuario}}>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <mat-form-field appearance="outline" class="mb-3 w-100">
                                     <mat-label class="fw-bold">Password</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
-                                        maxlength="50" required>
+                                        maxlength="50" required value={{password_usuario}}>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <mat-form-field appearance="outline" class="mb-3 w-100">
                                     <mat-label class="fw-bold">Confirm Password</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
-                                        maxlength="50" required>
+                                        maxlength="50" required value={{password_usuario}}>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -162,31 +162,33 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <mat-form-field appearance="outline" class="mb-3 w-100">
-                                    <mat-label class="fw-bold">Departamento</mat-label>
-                                    <mat-select>
-                                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                                            {{food.viewValue}}
+                                <mat-form-field appearance="outline" class="w-100" >
+                                    <mat-label>Departamento</mat-label>
+                                    <mat-select [(value)]="id_Depa" (selectionChange)="obtenerProvincias($event.value)">
+                                        
+                                        <mat-option *ngFor="let departamento of listaDepartamentos" [value]="departamento.id_Depa">
+                                            {{departamento.nom_departamento}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col-sm-12 col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Provincia</mat-label>
+                                    <mat-select [(value)]="id_provincia" (selectionChange)="obtenerDistritos($event.value)">
+                                        <mat-option *ngFor="let provincia of listaProvincias" [value]="provincia.id_provincia">
+                                            {{provincia.nom_provincia}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-sm-12 col-md-6">
-                                <mat-form-field appearance="outline" class="mb-3 w-100">
-                                    <mat-label class="fw-bold">Distrito</mat-label>
-                                    <mat-select>
-                                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                                            {{food.viewValue}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <mat-form-field appearance="outline" class="mb-3 w-100">
-                                    <mat-label class="fw-bold">Provincia</mat-label>
-                                    <mat-select>
-                                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                                            {{food.viewValue}}
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Distrito</mat-label>
+                                    <mat-select [(value)]="id_dist">
+                                        <mat-option *ngFor="let distrito of listaDistritos" [value]="distrito.id_dist">
+                                            {{distrito.nom_distrito}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -195,7 +197,7 @@
                                 <mat-form-field appearance="outline" class="mb-3 w-100">
                                     <mat-label class="fw-bold">Dirección</mat-label>
                                     <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
-                                        maxlength="50" required>
+                                        maxlength="50" required value={{direc_usuario}}>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-12 mb-4">
