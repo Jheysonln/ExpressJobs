@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NotificationComponent } from './notification/notification.component';
 import { MaterialModule } from 'src/app/core/theme/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MaterialModule } from 'src/app/core/theme/material/material.module';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class InfoModule { }

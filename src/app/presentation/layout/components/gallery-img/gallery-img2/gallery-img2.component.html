@@ -1,0 +1,19 @@
+<div class="d-flex flex-column pb-2 main-content">
+    <h2 class="pb-3 mb-0">Imágenes antes del Servicio</h2>
+    <div class="d-flex">
+      <ng-container *ngFor="let url of urls">
+        <div class="image-container">
+          <img [src]="url" class="gallery-image" alt="Image" (click)="openFullScreen(url)">
+        </div>
+      </ng-container>
+    </div>
+    <h2 class="py-3 mb-0">Imágenes despúes del Servicio</h2>
+    <div class="d-flex">
+      <ng-container *ngFor="let url of urls">
+        <div class="image-container">
+          <img [src]="url" class="gallery-image" alt="Image" (click)="openFullScreen(url)">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  

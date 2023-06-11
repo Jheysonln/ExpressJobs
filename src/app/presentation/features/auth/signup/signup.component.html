@@ -15,26 +15,17 @@
             </div>
             <div class="d-none d-md-block mb-4">
                 <div class="justify-content-center">
-                    <button mat-button mat-stroked-button type="button" class="btn-sign-in fw-bold" [routerLink]="['/auth/signin']">
+                    <button mat-button mat-stroked-button type="button" class="btn-sign-in fw-bold" [routerLink]="['/auth/login']">
                         <!-- <fa-icon [icon]="['fas', 'user-plus']" size="lg"></fa-icon> -->
                         <i class="fas fa-cloud-arrow-down fa-lg"></i>
                         SignIn
                     </button>
                 </div>
             </div>
-            <div class="d-none d-md-block">
-                <div class="justify-content-center">
-                    <button mat-button mat-stroked-button type="button" class="btn-dashboard fw-bold" [routerLink]="['/home']">
-                        <!-- <fa-icon [icon]="['fas', 'user-plus']" size="lg"></fa-icon> -->
-                        <i class="fas fa-cloud-arrow-down fa-lg"></i>
-                        Return
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="col-md-8 col-xs-12 col-sm-12 login_form order-2 order-md-1">
-        <form>
+        <form [formGroup]="userForm" (ngSubmit)="userForm.valid && btnInsertUser()">
             <div class="container-fluid">
                 <div class="row">
                     <h2 class="my-3">Register</h2>
@@ -43,72 +34,58 @@
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
                             <mat-label class="fw-bold">Nombre</mat-label>
-                            <input matInput type="text" placeholder="Ingrese su Correo Electronico"
-                                 autocomplete="off">
+                            <input matInput #username type="text" formControlName="username" placeholder="Ingrese sus Nombres"
+                                 autocomplete="off" name="username">
+                                <mat-error class="fw-bold">{{getErrorMessaje('username',username.value.length)}}</mat-error>
+                                <mat-hint>{{username.value.length}} / 50 caracteres</mat-hint>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
                             <mat-label class="fw-bold">Apellido</mat-label>
-                            <input matInput type="text" placeholder="Ingrese su Correo Electronico"
+                            <input matInput #ape_usuario type="text" formControlName="ape_usuario" placeholder="Ingrese sus Apellidos"
                                  autocomplete="off">
+                                 <mat-error class="fw-bold">{{getErrorMessaje('ape_usuario',ape_usuario.value.length)}}</mat-error>
+                                 <mat-hint>{{ape_usuario.value.length}} / 50 caracteres</mat-hint>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
-                            <mat-label>Email</mat-label>
-                            <input matInput type="text" placeholder="Ingrese su Correo Electronico" autocomplete="off"
-                                name="nombreForm" minlength="5" maxlength="50" textOnly required>
+                            <mat-label class="fw-bold">Email</mat-label>
+                            <input matInput #email type="text" formControlName="email" placeholder="Ingrese su Correo Electronico" 
+                                autocomplete="off">
+                                <mat-error class="fw-bold">{{getErrorMessaje('email',email.value.length)}}</mat-error>
+                                <mat-hint>{{email.value.length}} / 50 caracteres</mat-hint>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
-                            <mat-label>Password</mat-label>
-                            <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
-                                maxlength="50" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-sm-12 col-md-12">
-                        <mat-form-field appearance="outline" class="mb-3 w-100">
-                            <mat-label>Confirm Password</mat-label>
-                            <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
-                                maxlength="50" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-sm-12 col-md-12">
-                        <mat-form-field appearance="outline" class="mb-3 w-100">
-                            <mat-label>Teléfono</mat-label>
-                            <input matInput>
-                            <button mat-icon-button matSuffix [matMenuTriggerFor]="prefixOptionsMenu" class="fs-6" style="width: auto;">
-                              {{ selectedOption || selectedPrefix }}   
-                                <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+                            <mat-label class="fw-bold">Password</mat-label>
+                            <input matInput [type]="hidePwd ? 'password' : 'text'" #password formControlName="password"
+                                placeholder="Ingrese su Password" autocomplete="off">
+                            <button type="button" mat-icon-button matSuffix (click)="hidePwd = !hidePwd">
+                                <i [ngClass]="{ 'fa-2xs fas': true, 'fa-eye': hidePwd === false, 'fa-eye-slash':hidePwd === true}"></i>
                             </button>
-                            <mat-menu #prefixOptionsMenu="matMenu">
-                              <button mat-menu-item *ngFor="let option of prefixOptions" (click)="onChangeOption(option)">
-                                {{ option }}
-                              </button>
-                            </mat-menu>
-                          </mat-form-field>
+                                <mat-error class="fw-bold">{{getErrorMessaje('password',password.value.length)}}</mat-error>
+                                <mat-hint>{{password.value.length}} / 50 caracteres</mat-hint>
+                        </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
-                            <mat-label>Documento</mat-label>
-                            <input matInput>
-                            <button mat-icon-button matSuffix [matMenuTriggerFor]="prefixOptionsMenu" class="fs-6" style="width: auto;">
-                              {{ selectedOption || selectedPrefix }}   
-                                <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+                            <mat-label class="fw-bold">Confirm Password</mat-label>
+                            <input matInput [type]="hideConfirmPwd ? 'password' : 'text'" #confirmPassword formControlName="confirmPassword"
+                                placeholder="Confirme su password" autocomplete="off">
+                            <button type="button" mat-icon-button matSuffix (click)="hideConfirmPwd = !hideConfirmPwd">
+                                <i [ngClass]="{ 'fa-2xs fas': true, 'fa-eye': hideConfirmPwd === false, 'fa-eye-slash':hideConfirmPwd === true}"></i>
                             </button>
-                            <mat-menu #prefixOptionsMenu="matMenu">
-                              <button mat-menu-item *ngFor="let option of prefixOptions" (click)="onChangeOption(option)">
-                                {{ option }}
-                              </button>
-                            </mat-menu>
-                          </mat-form-field>
+                                <mat-error class="fw-bold">{{getErrorMessaje('confirmPassword',confirmPassword.value.length)}}</mat-error>
+                                <mat-hint>{{confirmPassword.value.length}} / 50 caracteres</mat-hint>
+                        </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12 mb-4">
                         <div class="justify-content-center">
-                            <button mat-button mat-stroked-button type="button"
-                                class="text-wrap text-break btn-login" [routerLink]="['/home']">
+                            <button mat-button mat-stroked-button type="submit"
+                                class="text-wrap text-break btn-login">
                                 <i class="fas fa-cloud-arrow-down fa-lg"></i>
                                 Register
                             </button>
@@ -117,12 +94,7 @@
                 </div>
                 <div class="row d-block d-md-none">
                     <p class="text-secondary fw-bold">Don't have an account? 
-                        <a [routerLink]="['/auth/signin']" class="link-light">SigIn Here</a>
-                    </p>
-                </div>
-                <div class="row d-block d-md-none">
-                    <p class="text-secondary fw-bold">Return in
-                        <a [routerLink]="['/home']" class="link-light">Dashboard...</a>
+                        <a [routerLink]="['/auth/login']" class="link-light">SigIn Here</a>
                     </p>
                 </div>
             </div>

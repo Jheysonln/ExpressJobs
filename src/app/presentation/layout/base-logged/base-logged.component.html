@@ -1,6 +1,7 @@
 <mat-drawer-container>
-    <mat-drawer [class]="'mat-drawer-color ' + sidebarColor + sidebarScrollColorLigth" #snav [mode]="isMovil ? 'over' : 'side'"
-        [opened]="!isMovil" [ngClass]="{ 'sidenav-collapsed': collapsedNav && !isMovil}">
+    <mat-drawer [class]="'mat-drawer-color ' + sidebarColor + sidebarScrollColorLigth" #snav
+        [mode]="isMovil ? 'over' : 'side'" [opened]="!isMovil"
+        [ngClass]="{ 'sidenav-collapsed': collapsedNav && !isMovil}">
         <app-sidebar [collapsedNav]="collapsedNav" [isMovil]="isMovil" (toggleEventCloseSidenav)="btnCloseSidenav()">
         </app-sidebar>
     </mat-drawer>
@@ -22,4 +23,5 @@
     </mat-drawer>
 </mat-drawer-container>
 <!-- Full Screen para imagenes -->
+<app-landboot></app-landboot>
 <app-full-screen></app-full-screen>

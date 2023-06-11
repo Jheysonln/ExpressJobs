@@ -2,7 +2,13 @@ import { ThisReceiver } from '@angular/compiler';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { of, Subscription } from 'rxjs';
+import { IMenu, ISubmenu } from 'src/app/core/interfaces/DashboardInterface';
+import { IUsuario } from 'src/app/core/interfaces/UserInterface';
+import { ReplaceCharacterDashboard } from 'src/app/core/pipe/replaceCharacterDashboard';
 import { AppService } from 'src/app/data/services/app.service';
+import { AuthService } from 'src/app/data/services/auth/auth.service';
+import { GenericService } from 'src/app/data/services/generic.service';
+import { UserService } from 'src/app/data/services/user/user.service';
 declare var $: any;//usamos jquery
 
 @Component({
@@ -13,154 +19,157 @@ declare var $: any;//usamos jquery
 export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   data = of([
     {
-      id:1,
+      id: 1,
       title: '',
       descripcion: 'Home',
       url: '/home',
       icon: 'bx bx-home',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:2,
+      id: 2,
       title: '',
       descripcion: 'Search Service',
       url: '/search-service',
       icon: 'bx bx-home',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:3,
+      id: 3,
       title: '',
       descripcion: 'Ranking',
       url: '/ranking',
       icon: 'bx bx-line-chart',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:4,
+      id: 4,
       title: '',
       descripcion: 'Offers',
       url: '/offers',
       icon: 'bx bx-briefcase-alt-2',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:5,
+      id: 5,
       title: '',
       descripcion: 'Order History',
       url: '/history',
       icon: 'bx bx-show-alt',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:6,
+      id: 6,
       title: '',
       descripcion: 'Services Provided',
       url: '/services',
       icon: 'bx bx-briefcase-alt-2',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:7,
+      id: 7,
       title: 'Settings',
       descripcion: '',
       url: '',
       icon: '',
       provided: '',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [],
     },
     {
-      id:8,
+      id: 8,
       title: '',
       descripcion: 'Maintenance',
       url: '',
       icon: 'bx bx-cart-alt',
       provided: 'maintenance',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [
         {
-          id:1,
-          idMenu:8,
+          id: 1,
+          idMenu: 8,
           descripcion: 'Users',
           url: '/maintenance/users',
           active: false,
-          classActive:'',
+          classActive: '',
         },
         {
-          id:2,
-          idMenu:8,
+          id: 2,
+          idMenu: 8,
           descripcion: 'Categories',
           url: '/maintenance/categories',
           active: false,
-          classActive:'',
+          classActive: '',
         },
       ],
     },
     {
-      id:9,
+      id: 9,
       title: '',
       descripcion: 'Reports',
       url: '',
       icon: 'bx bx-home',
       provided: 'reports',
-      active:false,
-      classActive:'',
+      active: false,
+      classActive: '',
       subitem: [
         {
-          id:1,
-          idMenu:9,
+          id: 1,
+          idMenu: 9,
           descripcion: 'Users',
           url: '/reports/users',
           active: false,
-          classActive:'',
+          classActive: '',
         },
         {
-          id:2,
-          idMenu:9,
+          id: 2,
+          idMenu: 9,
           descripcion: 'Categories',
           url: '/reports/categories',
           active: false,
-          classActive:'',
+          classActive: '',
         }
       ],
     }
   ]);
 
-  info: any[] = [
+  info: IMenu[] = [
     {
+      id_menu: 10,
       title: 'Info'
     },
     {
+      id_menu: 11,
       title: '',
-      descripcion: 'About Us',
+      description: 'About Us',
       url: '/aboutUs',
       icon: 'bx bx-briefcase-alt-2',
       subitem: [],
     },
     {
+      id_menu: 12,
       title: '',
-      descripcion: 'Contact Us',
+      description: 'Contact Us',
       url: '/contactUs',
       icon: 'bx bx-briefcase-alt-2',
       subitem: [],
@@ -175,36 +184,61 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   colorChange = "";
   linkActiveColor = "";
   sidenavheaderColor = "";
-
   url: string = "";
-
-
   activeLink = "";
 
-  constructor(private _router: Router, private renderer: Renderer2, private appService: AppService,private cdr: ChangeDetectorRef) {
-    this.data.subscribe((res) => this.datos = [...res, ...this.info])
-    // this.appService.sidebarNewColor.subscribe((color) => this.changeColorLinkActive(color));
+
+
+  subscription: Subscription = new Subscription;
+  menus?: IMenu[];
+  rol: string = "";
+  email: string = "";
+  usuario? : IUsuario;
+  userRol? : string;
+
+  @ViewChild('menuElement') menuElement!: ElementRef;
+
+  constructor(
+    private _router: Router,
+    private _genericService: GenericService,
+    private _userService: UserService,
+    private appService: AppService,
+    private cdr: ChangeDetectorRef,
+    private _authService: AuthService,
+    private elementRef: ElementRef, private renderer: Renderer2,
+    private replaceCharacterDashboard:ReplaceCharacterDashboard) {
+    // this.data.subscribe((res) => this.datos = [...res, ...this.info])
+    this.subscription.add(this._authService.userProfile$.subscribe((rol: string) => this.rol = rol));
+    this.subscription.add(this._authService.userEmail$.subscribe((email: string) => this.email = email));
     this.appService.headerNewColor.subscribe((color) => this.changeColorLinkActive(color));
     this.appService.newTheme.subscribe((color) => this.changeColorSidenavhHeader(color));
-
-    // this.subscription = this.appService.getBreadcrumbs$().subscribe(ruta => {
-    //   console.log(ruta)
-    //   const ultimaRuta = ruta[ruta.length - 1];
-    //   this.url = ultimaRuta.url;
-    // });
   }
 
 
   ngOnInit(): void {
+    this.obtenerDashboard(this.rol);
+    this.obtenerEmail(this.email);
     this.changeColorLinkActive("j-mat-primary");
     this.changeColorSidenavhHeader("j-mat-primary");
+  }
 
+  obtenerDashboard(rol: string) {
+    if (rol) this._genericService.obtenerDashboard$(rol).subscribe(res => this.menus = [...res, ...this.info]);
+  }
+
+  obtenerEmail(email: string) {
+    if (email) this._userService.obtenerUsuarioEmail$(email).subscribe((res:IUsuario) => {
+      if(res && res.roles && res.roles.length > 0){
+        this.usuario = res;
+        this.userRol = this.usuario.roles ? this.usuario.roles[0]?.des_rol : "";
+      }
+    });
   }
 
   ngAfterViewInit(): void {
-    $('#menu').metisMenu();
-    this.setActiveRoute();
+    setTimeout(() => { $(document).ready(() => $('#menu').metisMenu({ toggle: false })) }, 100);
     this.cdr.detectChanges();
+   
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -212,35 +246,65 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     this.isMovil = (changes['isMovil']) ? changes['isMovil'].currentValue : this.isMovil;
   }
 
-    onGetRoutes(id: number) {
-    this.datos.forEach((item:any) => {
-      if (item.id === id) {
-        if(item.url){
-          this._router.navigate([item.url]);
+  onGetRoutes(id_menu: number) {
+    this.menus!.forEach((menu: IMenu) => {
+      if (menu.id_menu === id_menu) {
+        if (menu.url) {
+          this._router.navigate([menu.url]);
           this.toggleEventCloseSidenav.emit();
         }
-        item.active = true;
-        item.classActive = "mm-active-two";
       } else {
-        item.active = false;
-        item.classActive = "";
+        if(menu.description){
+          const menuActiveClass = this.replaceCharacterDashboard.transform(menu.description);
+          const menuDesactive = '#' + menuActiveClass;
+          const element = this.elementRef.nativeElement.querySelector(menuDesactive);       
+          this.renderer.removeClass(element, 'mm-active');
+          this.onGetSubRoutes(0,0);
+
+          if (element instanceof HTMLElement) {
+            const childElements = Array.from(element.children);
+            if (childElements.length > 0) {
+              const anchorElement = childElements.find(element => element.tagName === 'A');
+              const ulElement = childElements.find(element => element.tagName === 'UL');
+              if (anchorElement && ulElement) {
+                anchorElement.setAttribute('aria-expanded', 'false');
+                $(ulElement).slideUp().promise().done(() => {
+                  this.renderer.removeClass(ulElement, 'mm-show');
+                  ulElement.removeAttribute('style');
+                });
+              }
+            } else {
+              // El elemento no tiene hijos
+            }
+          } else {
+            // El elemento no es un objeto HTMLElement válido
+          }
+        }
       }
     });
   }
 
-  onGetSubRoutes(id:number,idMenu:number){
-    this.datos.forEach((item:any) => {
-      item.subitem && item.subitem.forEach((element:any) => {
-        if (element.id === id && element.idMenu === idMenu) {
-          this._router.navigate([element.url])
-          element.active = true;
-          element.classActive = "mm-actives-two";
+
+  onGetSubRoutes(id_menu: number, id_submenu: number) {
+
+    this.menus!.forEach((menu: IMenu) => {
+      menu.subitem && menu.subitem.forEach((item: ISubmenu) => {
+        if (item.id_submenu === id_submenu && item.id_menu === id_menu) {
+          this._router.navigate([item.url])
         } else {
-          element.active = false;
-          element.classActive = "";
+          const menuActiveClass = this.replaceCharacterDashboard.transform((menu?.description || '') + (item?.description || ''));
+          const menuDesactive = '#' + menuActiveClass;
+          const element = this.elementRef.nativeElement.querySelector(menuDesactive);       
+          this.renderer.removeClass(element, 'mm-active');
         }
       });
     });
+  }
+
+  removeActive(menuActiveClass:string){
+    const menuDesactive = '#' + menuActiveClass;
+    const element = this.elementRef.nativeElement.querySelector(menuDesactive);       
+    this.renderer.removeClass(element, 'mm-active');
   }
 
 
@@ -268,96 +332,6 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     this.sidenavheaderColor = theme === 'light' ? this.colorChange : "";
   }
 
-  setActiveRoute() {
-   
-    // const separatorRoute = this._router.url.split('/').filter(u => u !== '');
-    // const Router = separatorRoute.map((url) => ({ url: `/${url}` }));
-
-    // Router.forEach((route)=>{
-      // const menu = $(".metismenu li > a");
-      // for (var i = 0; i < menu.length; i++) {
-      //   const _id = menu[i].id;
-      //   if (_id && _id !== urlCollection.url) {
-      //     const elem = document.getElementById(_id)?.parentElement;
-      //     elem!.classList.remove("mm-active");
-      //   }
-      //   else if (_id && _id === urlCollection.url) {
-      //     console.log(_id);
-      //     const elem = document.getElementById(_id)?.parentElement;
-      //     elem!.classList.add("mm-active");
-      //   }
-      // };
-      console.log(this._router.url);
-      this.datos.forEach((item:any) => {
-        if(item.subitem && item.subitem.length > 0){
-          let idMenu = 0;
-          item.subitem.forEach((element:any) => {
-            if (element.url === this._router.url) {
-              this._router.navigate([element.url])
-              element.active = true;
-              element.classActive = "mm-actives-two";
-              // idMenu = element.id;
-
-              item.active = true;
-              item.classActive = "mm-actives-two";
-
-              // console.log(item);
-
-            } else {
-              element.active = false;
-              element.classActive = "";
-            }
-          });
-        }
-        else{
-          this.datos.forEach((data:any) => {
-              if (data.url && data.url === this._router.url) {
-                this._router.navigate([data.url]);
-                data.active = true;
-                data.classActive = "mm-active-two";
-              } 
-              // else if(){
-      
-              // }
-              else {
-                data.active = false;
-                data.classActive = "";
-              }
-            });
-        }
-      });
-      
-      console.log(this.datos);
-      // this.datos.forEach((data:any) => {
-      //   if (data.url && data.url === route.url) {
-      //     this._router.navigate([data.url]);
-      //     data.active = true;
-      //     data.classActive = "mm-active-two";
-      //   } 
-      //   // else if(){
-
-      //   // }
-      //   else {
-      //     data.active = false;
-      //     data.classActive = "";
-      //   }
-      // });
-    //})
-
-    // this.datos.forEach((item:any) => {
-    //   if (item.id === id) {
-    //     if(item.url){
-    //       this._router.navigate([item.url]);
-    //       this.toggleEventCloseSidenav.emit();
-    //     }
-    //     item.active = true;
-    //     item.classActive = "mm-active-two";
-    //   } else {
-    //     item.active = false;
-    //     item.classActive = "";
-    //   }
-    // });
-  }
 
   ngOnDestroy() {
   }

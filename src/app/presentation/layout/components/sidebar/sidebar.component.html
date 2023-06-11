@@ -14,8 +14,8 @@
                 </div>
             </div>
             <div class="col-6 align-self-center description-profile">
-                <p class="mb-0 user-name">Jhyeson Jhonatan Limachi Noriega</p>
-                <p class="mb-0 text-secondary mat-small fw-bold">Admin</p>
+                <p class="mb-0 user-name">{{this.usuario?.username}} {{this.usuario?.ape_usuario}}</p>
+                <p class="mb-0 text-secondary mat-small fw-bold">{{userRol}}</p>
                 <p class="mb-0 user-status">
                     <i class="fa fa-circle"></i>
                     <span>Online</span>
@@ -24,34 +24,28 @@
         </div>
     </div>
     <hr class="m-auto" style="width: 88%;">
-    <ul class="metismenu" id="menu">
-        <li *ngFor="let dato of datos"
-            [ngClass]="{ 'menu-label':dato.title, 'd-block d-sm-none': dato.descripcion == 'About Us' || dato.descripcion == 'Contact Us' || dato.title == 'Info'} "
-            [class]="linkActiveColor + ' '+ dato.classActive">
-            <!-- Muestralo si no existe un title-->
-            <ng-container *ngIf="!dato.title; else getTitle">
-                <!-- <a (click)="onGetRoutes(dato.url)" [ngClass]="dato.url ? '' : 'has-arrow'" [id]="dato.url"
-                    role="button"> -->
-                <a (click)="onGetRoutes(dato.id)" [ngClass]="dato.url ? '' : 'has-arrow'" [id]="dato.url"
-                    role="button"> 
-                    <div class="parent-icon">
-                        <i class='{{dato.icon}}'></i>
-                    </div>
-                    <div class="menu-title">{{dato.descripcion}}</div>
-                </a>
-                <!-- Muestralo si no existe una ruta -->
-                <ul *ngIf="!dato.url">
-                    <li *ngFor="let items of dato.subitem" [class]="linkActiveColor + ' '+ items.classActive">
-                        <!-- <a (click)="onGetRoutes(items.url)" [id]="items.url" role="button"><i
-                                class="bx bx-right-arrow-alt"></i>{{items.descripcion}}</a> -->
-                                <a (click)="onGetSubRoutes(items.id,items.idMenu)" [id]="items.url" role="button"><i
-                                    class="bx bx-right-arrow-alt"></i>{{items.descripcion}}</a>
-                    </li>
-                </ul>
-            </ng-container>
-            <ng-template #getTitle>
-                <span class="title-link">{{dato.title}}</span>
-            </ng-template>
-        </li>
+    <ul class="metismenu" id="menu" #menuElement>
+        <li *ngFor="let menu of menus"
+        [ngClass]="{ 'menu-label':menu.title, 'd-block d-sm-none': menu.description == 'About Us' || menu.description == 'Contact Us' || menu.title == 'Info'} "
+        [class]="linkActiveColor + ' '+ menu.class_active" [id]="menu.description | replaceCharacterDashboard">
+        <ng-container *ngIf="!menu.title; else getTitle">
+            <a (click)="onGetRoutes(menu.id_menu)" [ngClass]="menu.url ? '' : 'has-arrow'" [id]="menu.url"
+                role="button"> 
+                <div class="parent-icon">
+                    <i class='{{menu.icon}}'></i>
+                </div>
+                <div class="menu-title">{{menu.description}}</div>
+            </a>
+            <ul *ngIf="!menu.url">
+                <li *ngFor="let items of menu.subitem" [class]="linkActiveColor + ' '+ items.class_active" [id]="(menu?.description || '') + (items?.description || '') | replaceCharacterDashboard">
+                            <a (click)="onGetSubRoutes(items.id_menu,items.id_submenu)" [id]="items.url" role="button"><i
+                                class="bx bx-right-arrow-alt"></i>{{items.description}}</a>
+                </li>
+            </ul>
+        </ng-container>
+        <ng-template #getTitle>
+            <span class="title-link">{{menu.title}}</span>
+        </ng-template>
+    </li>
     </ul>
 </div>

@@ -289,41 +289,10 @@ ul {
 	a:hover,
 	a:focus,
 	a:active,
-	// .mm-active {
-	// 	&.mat-active-primary {
-	// 		&>a {
-	// 			background: $am-mat-primary;
-	// 		}
-	// 	}
-
-	// 	&.mat-active-warn {
-	// 		&>a {
-	// 			background: $am-mat-warn;
-	// 		}
-
-	// 	}
-
-	// 	&.mat-active-accent {
-	// 		&>a {
-	// 			background: $am-mat-accent;
-	// 		}
-
-	// 	}
-
-	// 	&>a {
-	// 		border-radius: 10px;
-	// 		color: #fffffff5;
-	// 		text-decoration: none;
-	// 		// background: $am-mat-primary;
-	// 		&:hover {
-	// 			color: #fffffff5;
-	// 		}
-	// 	}
-	// }
-	.mm-active-two {
+	.mm-active {
 		&.mat-active-primary {
 			&>a {
-				background: $am-mat-primary !important;
+				background: $am-mat-primary;
 			}
 		}
 
@@ -351,6 +320,37 @@ ul {
 			}
 		}
 	}
+	// .mm-active-two {
+	// 	&.mat-active-primary {
+	// 		&>a {
+	// 			background: $am-mat-primary !important;
+	// 		}
+	// 	}
+
+	// 	&.mat-active-warn {
+	// 		&>a {
+	// 			background: $am-mat-warn;
+	// 		}
+
+	// 	}
+
+	// 	&.mat-active-accent {
+	// 		&>a {
+	// 			background: $am-mat-accent;
+	// 		}
+
+	// 	}
+
+	// 	&>a {
+	// 		border-radius: 10px;
+	// 		color: #fffffff5;
+	// 		text-decoration: none;
+	// 		// background: $am-mat-primary;
+	// 		&:hover {
+	// 			color: #fffffff5;
+	// 		}
+	// 	}
+	// }
 
 	.arrow {
 		float: right;

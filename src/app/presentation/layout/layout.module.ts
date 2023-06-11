@@ -17,6 +17,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { GalleryImg1Component } from './components/gallery-img/gallery-img1/gallery-img1.component';
 import { FullScreenComponent } from './components/gallery-img/full-screen/full-screen.component';
 import { InfoModule } from '../features/info/info.module';
+import { LandbootComponent } from './components/landboot/landboot/landboot.component';
+import { ReplaceCharacterDashboard } from 'src/app/core/pipe/replaceCharacterDashboard';
+import { GalleryImg2Component } from './components/gallery-img/gallery-img2/gallery-img2.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { InfoModule } from '../features/info/info.module';
     SwiperCarouselComponent,
     BreadcrumbComponent,
     GalleryImg1Component,
-    FullScreenComponent
+    FullScreenComponent,
+    LandbootComponent,
+    ReplaceCharacterDashboard,
+    GalleryImg2Component
   ],
   imports: [
     CommonModule,
@@ -41,10 +47,11 @@ import { InfoModule } from '../features/info/info.module';
     SwiperModule,
     InfoModule
   ],
-  
+  providers: [ReplaceCharacterDashboard],
   exports:[
     SwiperCarouselComponent,
-    GalleryImg1Component
+    GalleryImg1Component,
+    GalleryImg2Component
   ]
 })
 export class LayoutModule { }

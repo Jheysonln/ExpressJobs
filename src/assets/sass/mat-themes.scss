@@ -171,6 +171,10 @@ $angular-dark-theme: mat.define-dark-theme((color: (primary: $angular-primary,
     box-shadow: 0 0.125rem 0.25rem rgb(136 152 170 / 15%);
   }
 
+  .mat-drawer-container{
+    background: #f9f9f9;
+  }
+
   .custom-footer {
     background: $j-ligth-color;
     border-top: 1px solid rgba(228, 228, 228, 0);

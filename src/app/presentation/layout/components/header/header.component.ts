@@ -1,8 +1,12 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { IUsuario } from 'src/app/core/interfaces/UserInterface';
+import { setMaterialColor } from 'src/app/core/utilities/app';
 import { AppService } from 'src/app/data/services/app.service';
-import { setMaterialColor } from 'src/assets/utilities/app';
+import { AuthService } from 'src/app/data/services/auth/auth.service';
+import { UserService } from 'src/app/data/services/user/user.service';
+
 
 
 
@@ -52,13 +56,15 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   headerColor: string = "";
 
   matColor: ThemePalette = 'primary';
+  email?:string;
   
-  constructor( private appService: AppService) {
+  constructor( private appService: AppService , public _authService : AuthService, private _userService:UserService) {
     // this.appService.headerNewColor.subscribe((color) => this.updateHeaderColor(color));
     this.appService.headerNewColor.subscribe((color) => this.matColor = setMaterialColor(color));
   }
 
   ngOnInit(): void {
+    this._authService.userEmail$.subscribe((email: string) => this.email = email);
   }
 
   ngAfterContentChecked() {

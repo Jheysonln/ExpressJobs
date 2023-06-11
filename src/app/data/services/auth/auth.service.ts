@@ -1,6 +1,9 @@
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { IAuth, IAuthResponseToken } from 'src/app/core/interfaces/AuthInterface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,55 +12,89 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private MyAppUrl = environment.apiUrl;
-  private MyApiUrl = '/api/productos/';
+  private MyApiUrl = '/api/auth/';
 
-  constructor(private http: HttpClient) { }
+  public logeedIn = new BehaviorSubject<boolean>(false);
+  public user = new BehaviorSubject<string>("");
+  public profile = new BehaviorSubject<string>("");
 
-  obtenerProductos$(): Observable<any[]> {
-    let name = "obtenerProductos";
-    return this.http.get<any[]>(this.MyAppUrl + this.MyApiUrl + name)
+  constructor(private http: HttpClient, private orRouter: Router) {
+    this.checkToken();
   }
 
-  obtenerProductosId$(id_producto: number): Observable<HttpResponse<any[]>> {
-    let name = "obtenerProductoId/";
-    return this.http.get<any[]>(this.MyAppUrl + this.MyApiUrl + name + id_producto, { observe: 'response' })
+  get isLogged$(): Observable<boolean> {
+    return this.logeedIn.asObservable();
   }
 
-  updateProducto$(id_productoparaActualizar: number, updateProducto: any) {
-    let name = "actualizarProducto/";
-    const newProducto = JSON.stringify(updateProducto);
-    console.log(this.MyAppUrl + this.MyApiUrl + name + id_productoparaActualizar);
-    return this.http.put<boolean>(this.MyAppUrl + this.MyApiUrl + name + id_productoparaActualizar, newProducto, { headers: { 'Content-Type': 'application/json' } }).pipe(
-      catchError(error => {
-        // Aquí puedes manejar el error
-        console.error(error);
-        throw new Error('Error al actualizar el producto');
-      })
-    );
+  get userProfile$(): Observable<string> {
+    return this.profile.asObservable();
   }
 
-  createProducto$(producto: any) {
-    let name = "crearProducto";
-    const newProducto = JSON.stringify(producto);
-    return this.http.post<boolean>(this.MyAppUrl + this.MyApiUrl + name, newProducto, { headers: { 'Content-Type': 'application/json' } }).pipe(
-      catchError(error => {
-        // Aquí puedes manejar el error
-        console.error(error);
-        throw new Error('Error al crear el producto');
-      })
-    );
+  get userEmail$(): Observable<string> {
+    return this.user.asObservable();
   }
 
-  deleteProducto$(id_producto: number) {
-    let name = "eliminarProducto/";
-    return this.http.delete<boolean>(this.MyAppUrl + this.MyApiUrl + name + id_producto).pipe(
-      catchError(error => {
-        // Aquí puedes manejar el error
-        console.error(error);
-        throw new Error('Error al crear el producto');
-      })
-    );
+  login$(auth: IAuth): Observable<IAuthResponseToken> {
+    const name = "login";
+    const credentials = JSON.stringify(auth);
+    return this.http.post<IAuthResponseToken>(this.MyAppUrl + this.MyApiUrl + name, credentials)
+      .pipe(
+        map((response: IAuthResponseToken) => {
+          this.saveLocalStorage(response);
+          return response;
+        }),
+        catchError((err) => this.handleError$(err))
+      );
   }
 
+  saveLocalStorage(responseToken: IAuthResponseToken): void {
+    if (responseToken) {
+      this.logeedIn.next(true);
+      localStorage.setItem('jwt', JSON.stringify(responseToken));
+      this.setDataLocalStorage();
+    }
+  }
 
+  setDataLocalStorage() {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      this.profile.next(decodedToken['roles'][0]);
+      this.user.next(decodedToken['user']);
+    }
+  }
+
+  checkToken() {
+    //instalar paquete npm i @auth0/angular-jwt
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      const helper = new JwtHelperService();
+      const isExpired = helper.isTokenExpired(token);
+      if (isExpired) {
+        this.logout();
+      } else {
+        this.logeedIn.next(true);
+        this.setDataLocalStorage();
+      }
+    } else {
+      this.logout();
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    this.logeedIn.next(false);
+    this.profile.next("");
+    this.user.next("");
+    this.orRouter.navigate(['/']);
+  }
+
+  handleError$(err: any): Observable<any> {
+    let error = "Ocurrió un error en los datos";
+    if (err) {
+      error = err.message;
+    }
+    return throwError(error);
+  }
 }

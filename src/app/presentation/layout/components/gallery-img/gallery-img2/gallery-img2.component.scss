@@ -1,0 +1,65 @@
+.main-content {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(248, 48, 255) rgba(0, 0, 0, 0.4);
+  
+    &::-webkit-scrollbar {
+      height: .7em;
+      cursor: pointer;
+    }
+  
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+      overflow: visible;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.4);
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: rgb(248, 48, 255);
+    }
+  
+    .gallery-image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .add-image {
+      min-width: 120px;
+      height: 120px;
+      border: 1px solid #bcbbbb;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      .fa{
+        cursor: pointer;
+        padding: 32px;
+        font-size: 3em;
+      }
+    }
+    
+    .image-container {
+      position: relative;
+    }
+  }
+  
+  
+  .remove-icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: #fff;
+    border-radius: 10%;
+    padding: 5px 10px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+  
+  .remove-icon i {
+    color: black;
+  }

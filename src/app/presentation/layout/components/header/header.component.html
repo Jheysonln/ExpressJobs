@@ -149,7 +149,7 @@
                 #menuTriggerUserProfile="matMenuTrigger" id="menuTriggerUserProfile">
                 <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                 <div class="user-info ps-3 d-none d-lg-block">
-                    <p class="user-name mb-0">Pauline Seitz</p>
+                    <p class="user-name mb-0">{{email}}</p>
                 </div>
             </a>
             <mat-menu #menuUserProfile class="j-custom-mat-menu-scroll text-break" [hasBackdrop]="false"
@@ -189,7 +189,7 @@
                             <button mat-raised-button color="primary" type="submit"
                             class="j-custom-mat-raised-button-primary j-mat-button-ms-primary mb-3" [routerLink]="['/profile']">Edit Profile</button>
                             <button mat-raised-button color="warn" type="button"
-                            class="j-custom-mat-raised-button-warn j-mat-button-ms-warn mb-2" [routerLink]="['/auth/login']">Close sesión</button>
+                            class="j-custom-mat-raised-button-warn j-mat-button-ms-warn mb-2" (click)="_authService.logout()">Close sesión</button>
                         </div>
                     </div>
                 </div>

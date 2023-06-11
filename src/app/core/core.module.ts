@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './theme/material/material.module';
 
-
-
 @NgModule({
   declarations: [],
   imports: [

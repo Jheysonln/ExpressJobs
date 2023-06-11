@@ -6,6 +6,7 @@ import { SignupComponent } from './signup.component';
 import { MaterialModule } from 'src/app/core/theme/material/material.module';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { LayoutModule } from '@angular/cdk/layout';
   imports: [
     CommonModule,
     SignupRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class SignupModule { }

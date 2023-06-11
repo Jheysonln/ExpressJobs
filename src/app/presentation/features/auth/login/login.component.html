@@ -13,18 +13,10 @@
                     </button>
                 </div>
             </div>
-            <div class="d-none d-md-block">
-                <div class="justify-content-center">
-                    <button mat-button mat-stroked-button type="button" class="btn-dashboard fw-bold" [routerLink]="['/dashboard/home']">
-                        <i class="fas fa-cloud-arrow-down fa-lg"></i>
-                        Return
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="col-md-8 col-xs-12 col-sm-12 login_form order-2">
-        <form>
+        <form [formGroup]="loguinForm" (ngSubmit)="loguinForm.valid && btnLogin()">
             <div class="container-fluid">
                 <div class="row">
                     <h2 class="my-3">Log In susano</h2>
@@ -33,19 +25,23 @@
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
                             <mat-label class="fw-bold">Email</mat-label>
-                            <input matInput type="text" [(ngModel)]="email" name="email" placeholder="Ingrese su Correo Electronico"
-                                 autocomplete="off">
+                            <input matInput type="text" #email formControlName="email" name="email"
+                                placeholder="Ingrese su Correo Electronico" autocomplete="off" />
+                            <mat-error class="fw-bold">{{getErrorMessaje('email',email.value.length)}}</mat-error>
+                            <mat-hint>{{email.value.length}} / 50 caracteres</mat-hint>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <mat-form-field appearance="outline" class="mb-3 w-100">
                             <mat-label class="fw-bold">Password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password" placeholder="Ingrese su Correo Password"
-                                autocomplete="off">
+                            <input matInput [type]="hide ? 'password' : 'text'" #password formControlName="password"
+                                name="password" placeholder="Ingrese su Password" autocomplete="off">
                             <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                                 <i
                                     [ngClass]="{ 'fa-2xs fas': true, 'fa-eye': hide === false, 'fa-eye-slash':hide === true}"></i>
                             </button>
+                            <mat-error class="fw-bold">{{getErrorMessaje('password',password.value.length)}}</mat-error>
+                            <mat-hint>{{password.value.length}} / 15 caracteres</mat-hint>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12 col-md-12 mb-3">
@@ -53,7 +49,7 @@
                     </div>
                     <div class="col-sm-12 col-md-12 mb-3">
                         <div class="justify-content-center">
-                            <button mat-button mat-stroked-button type="button" class="text-wrap text-break btn-login" (click)="login()" >
+                            <button mat-button mat-stroked-button type="submit" class="text-wrap text-break btn-login">
                                 <i class="fas fa-cloud-arrow-down fa-lg"></i>
                                 Login
                             </button>
@@ -80,11 +76,6 @@
                 <div class="row d-block d-md-none">
                     <p class="text-secondary fw-bold">Don't have an account?
                         <a [routerLink]="['/auth/signup']" class="link-light">Register Here</a>
-                    </p>
-                </div>
-                <div class="row d-block d-md-none">
-                    <p class="text-secondary fw-bold">Return in
-                        <a [routerLink]="['/home']" class="link-light">Dashboard...</a>
                     </p>
                 </div>
             </div>

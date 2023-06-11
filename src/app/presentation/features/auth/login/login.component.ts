@@ -1,30 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
-import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { IAuth } from 'src/app/core/interfaces/AuthInterface';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  subscription: Subscription = new Subscription;
+  loguinForm!: FormGroup;
   hide = true;
-  email!: string;
-  password!: string;
-  result:any;
-
-  ListaProductos: any;
+  
   constructor(
-    private http: HttpClient,
+    private fb: FormBuilder,
     private router: Router,
-    private authService : AuthService
-    )
-    {
+    private _authService: AuthService
+  ) {
+    this.initFormAuth();
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.obtenerProductos();
+    // this.obtenerProductos();
 
     // const producto = 
     //   {
@@ -32,7 +35,7 @@ export class LoginComponent implements OnInit {
     //     "precio": 23.34,
     //     "descripcion": "Descripción del producto"
     //   }
-    
+
     // this.authService.createProducto$(producto).subscribe({
     //   next: response => {
     //     // Manejar la respuesta exitosa
@@ -86,52 +89,77 @@ export class LoginComponent implements OnInit {
     //   }
     // });
 
-  
+
   }
 
 
-  obtenerProductos(){
-    this.authService.obtenerProductos$().subscribe({
-      next: response => {
-        // Manejar la respuesta exitosa
-        this.ListaProductos = response;
-        console.log(this.ListaProductos);
-      },
-      error: error => {
-        console.error(error);
-      },
-      complete: () => {
-      }
-    });
-  }
- 
-  
-  login() {
-    this.router.navigate(['/home']);
-    const headers = new HttpHeaders()
+  // obtenerProductos(){
+  //   this.authService.obtenerProductos$().subscribe({
+  //     next: response => {
+  //       // Manejar la respuesta exitosa
+  //       this.ListaProductos = response;
+  //       console.log(this.ListaProductos);
+  //     },
+  //     error: error => {
+  //       console.error(error);
+  //     },
+  //     complete: () => {
+  //     }
+  //   });
+  // }
 
-    const body = {};
-
-    const params = new HttpParams()
-        .append('email', this.email)
-        .append('password', this.password)
-
-    this.http
-    .post<any>('http://localhost:8080/api/seguridad/login', body, {
-        headers: headers,
-        params: params,
+  initFormAuth(): void {
+    this.loguinForm = this.fb.group({
+      email: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern("^[a-z0-9._%+-]+@(hotmail\\.com|gmail\\.com|cibertec\\.edu\\.pe)$")]),
+      password: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(5), Validators.pattern('[^ ]*$')])
     })
-    .subscribe((res) => {
+  }
 
-      if(res.respuesta==='ok'){
-        console.log(res);
-        this.router.navigate(['/home']);
-      }else{
-        console.log('error login');
+  btnLogin(): void {
+    // const login: IAuth = {
+    //   email: 'nikole@cibertec.edu.pe',
+    //   password: 'Cibertec123',
+    // };
+    const login: IAuth = {
+      email: this.loguinForm.get('email')?.value,
+      password: this.loguinForm.get('password')?.value,
+    };
+
+    this.subscription?.add(
+      this._authService.login$(login).subscribe({
+        next: response => {
+          if (response) {
+            this.router.navigate(['/home']);
+          }
+          console.log(response);
+        },
+        error: error => {
+          console.error(error);
+        }
+      }));
+  }
+
+  getErrorMessaje(field: string, length: number): string {
+    let message: string = "";
+    if (this.loguinForm.get(field)?.errors?.['required']) {
+      message = 'Este campo es requerido';
+    }
+    else if (this.loguinForm.get(field)?.hasError('minlength')) {
+      const minlength = this.loguinForm.get(field)?.errors?.['minlength'].requiredLength;
+      message = `Minimo ${minlength} caracteres`;
+    }
+    else if (this.loguinForm.get(field)?.hasError('maxlength')) {
+      const maxlength = this.loguinForm.get(field)?.errors?.['maxlength'].requiredLength;
+      message = `Maximo ${maxlength} caracteres`;
+    }
+    else if (this.loguinForm.get(field)?.hasError('pattern')) {
+      if (field == 'email') {
+        message = 'Formato Incorrecto';
+      }
+      else if (field == 'password') {
+        message = 'No se permiten espacios';
       }
     }
-     
-    );
+    return message;
   }
-  
 }

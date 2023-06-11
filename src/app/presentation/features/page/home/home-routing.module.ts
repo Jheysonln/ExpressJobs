@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
-  {path:'',redirectTo:'',pathMatch:"prefix"}
+  {path:'**',redirectTo:'/home',pathMatch:"prefix"}
 ];
 
 

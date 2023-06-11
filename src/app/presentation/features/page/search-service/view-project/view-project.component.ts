@@ -10,7 +10,8 @@ export class ViewProjectComponent {
   options?: google.maps.MapOptions;
   markers: any;
 
-  step = 0;
+  // step = 0;
+  step? : number;
 
   foods: any[] = [
     { value: 1, viewValue: 'Delantero' },
@@ -23,11 +24,11 @@ export class ViewProjectComponent {
   }
 
   nextStep() {
-    this.step++;
+    this.step!++;
   }
 
   prevStep() {
-    this.step--;
+    this.step!--;
   }
 
   constructor() {
