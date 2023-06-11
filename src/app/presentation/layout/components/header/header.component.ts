@@ -3,7 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { AppService } from 'src/app/data/services/app.service';
 import { setMaterialColor } from 'src/assets/utilities/app';
-
+import{ GlobalConstants } from '../../../../common/global-constants';
 
 
 @Component({
@@ -12,6 +12,8 @@ import { setMaterialColor } from 'src/assets/utilities/app';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterContentChecked {
+
+  appUsername = GlobalConstants.appUsername;
 
   @Output() themeEvent = new EventEmitter<boolean | null>();
   @Output() toggleEvent = new EventEmitter<void>();

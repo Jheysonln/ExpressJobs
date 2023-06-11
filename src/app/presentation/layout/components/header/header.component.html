@@ -149,7 +149,7 @@
                 #menuTriggerUserProfile="matMenuTrigger" id="menuTriggerUserProfile">
                 <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                 <div class="user-info ps-3 d-none d-lg-block">
-                    <p class="user-name mb-0">Pauline Seitz</p>
+                    <p class="user-name mb-0">{{appUsername}}</p>
                 </div>
             </a>
             <mat-menu #menuUserProfile class="j-custom-mat-menu-scroll text-break" [hasBackdrop]="false"
@@ -171,7 +171,7 @@
                                         User
                                     </div>
                                     <p matListItemLine>
-                                        Jheyson Jhonatan L. N.
+                                        {{appUsername}}
                                     </p>
                                 </mat-list-item>
                                 <mat-list-item class="p-0">

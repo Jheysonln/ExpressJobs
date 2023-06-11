@@ -6,6 +6,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NotificationComponent } from './notification/notification.component';
+import { FormsModule } from "@angular/forms";
 import { MaterialModule } from 'src/app/core/theme/material/material.module';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MaterialModule } from 'src/app/core/theme/material/material.module';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     MaterialModule
   ]
 })

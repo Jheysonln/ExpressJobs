@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Router } from '@angular/router';
+import{ GlobalConstants } from '../../../../common/global-constants';
 
 @Component({
   selector: 'app-login',
@@ -107,28 +108,24 @@ export class LoginComponent implements OnInit {
  
   
   login() {
-    this.router.navigate(['/home']);
-    const headers = new HttpHeaders()
-
-    const body = {};
+    //this.router.navigate(['/home']);
 
     const params = new HttpParams()
         .append('email', this.email)
         .append('password', this.password)
 
     this.http
-    .post<any>('http://localhost:8080/api/seguridad/login', body, {
-        headers: headers,
-        params: params,
-    })
-    .subscribe((res) => {
-
-      if(res.respuesta==='ok'){
-        console.log(res);
+    .get<any>(`http://localhost:8080/api/seguridad/login/${this.email}/${this.password}`)
+    .subscribe({
+      next: (res) => {
+        GlobalConstants.appUsername = res.nom_usuario;
+        GlobalConstants.appIdUsername = res.id_usuario;
         this.router.navigate(['/home']);
-      }else{
-        console.log('error login');
-      }
+      },
+      error: (e) => {
+        alert('email y/o pass incorrecto');
+      },
+      complete: () => console.log('login finalizado'),
     }
      
     );
