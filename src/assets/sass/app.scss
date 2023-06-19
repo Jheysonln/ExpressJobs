@@ -21,8 +21,6 @@
 @import "/node_modules/swiper/modules/pagination/pagination.min.css";
 @import "/node_modules/swiper/modules/navigation/navigation.min.css";
 
-
-
 //#ANGULAR MATERIAL#//
 $am-mat-primary: mat-color($angular-primary);
 $am-mat-accent: mat-color($angular-accent);
@@ -38,17 +36,17 @@ $b-light : $light;
 $b-dark : $dark;
 
 .j-mat-primary {
-    background-color: $am-mat-primary !important;
+    background-color: $am-mat-primary  !important;
     color: $b-light ;
 }
 
 .j-mat-accent {
-    background-color: $am-mat-accent !important;
+    background-color: $am-mat-accent  !important;
     color: $b-light ;
 }
 
 .j-mat-warn {
-    background-color: $am-mat-warn !important;
+    background-color: $am-mat-warn  !important;
     color: $b-light ;
 }
 
@@ -150,14 +148,32 @@ $b-dark : $dark;
 }
 
 // SWIPER PAGINATION
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
     background: #fff;
 }
-.swiper-slide.swiper-slide-visible{
+
+.swiper-slide.swiper-slide-visible {
     opacity: 0.4;
-    &.swiper-slide-thumb-active{
+
+    &.swiper-slide-thumb-active {
         opacity: 1;
     }
+}
+
+// MAT PROGRESS BAR 
+.mat-mdc-progress-bar {
+    height: 10px;
+    border-radius: 10px;
+}
+
+.mdc-linear-progress__bar-inner {
+    border-top-width: 10px !important;
+}
+
+// SWALLALERT PROGRESSBAR
+.simple-swal-progres {
+    background-color: transparent !important;
+    width: auto !important;
 }
 
 
@@ -231,27 +247,29 @@ $b-dark : $dark;
     pointer-events: auto;
     z-index: 1060;
     overflow: hidden !important;
-         &::before{
+
+    &::before {
         content: '';
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-         background: rgba(25, 25, 26, 0.75);
+        background: rgba(25, 25, 26, 0.75);
         height: 100%;
     }
+
     .swal2-popup.custom-swall-toast-popup {
         width: 342px !important;
         max-width: 100% !important;
     }
 }
 
-@media (max-width: 342px) { 
-    .swal2-container.swal2-backdrop-show.custom-swall-toast-container {    
+@media (max-width: 342px) {
+    .swal2-container.swal2-backdrop-show.custom-swall-toast-container {
         .swal2-popup.custom-swall-toast-popup {
             display: flex !important;
             flex-direction: column !important;
         }
     }
- }
+}

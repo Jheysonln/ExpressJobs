@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, switchMap, throwError, delay } from 'rxjs';
 import { IUsuario } from 'src/app/core/interfaces/UserInterface';
+import { swallLoader, toast_msg } from 'src/app/core/utilities/app';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { UserService } from 'src/app/data/services/user/user.service';
 
@@ -29,7 +30,7 @@ export class SignupComponent implements OnDestroy {
   userForm!: FormGroup;
   hidePwd = true;
   hideConfirmPwd = true;
-  rol?:string;
+  rol?: string;
 
   constructor(
     private fb: FormBuilder,
@@ -47,18 +48,18 @@ export class SignupComponent implements OnDestroy {
       email: ['', [Validators.required, Validators.maxLength(50), Validators.pattern("^[a-z0-9._%+-]+@(hotmail\\.com|gmail\\.com|cibertec\\.edu\\.pe)$")]],
       password: ['', [Validators.required, Validators.maxLength(15), Validators.minLength(5), Validators.pattern('[^ ]*$')]],
       confirmPassword: ['', Validators.required]
-    },{ validator: this.passwordMatchValidator });
+    }, { validator: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-  
+
     if (password?.value !== confirmPassword?.value) {
       control.get('confirmPassword')?.setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
     }
-  
+
     return null;
   }
 
@@ -82,7 +83,7 @@ export class SignupComponent implements OnDestroy {
       else if (field == 'password') {
         message = 'No se permiten espacios';
       }
-    } 
+    }
     else if (this.userForm.get(field)?.hasError('passwordMismatch')) {
       message = 'El password no coincide';
     }
@@ -96,28 +97,37 @@ export class SignupComponent implements OnDestroy {
       ape_usuario: this.userForm.get('ape_usuario')?.value,
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
-      id_rol:3
+      id_rol: 3
     };
-    
-    console.log(user);
 
+    const { email, password } = user;
+    const logged = { email, password };
+
+    swallLoader();
     this.subscription?.add(
-      this._userService.createUsuario$(user).subscribe({
+      this._userService.createUsuario$(user).pipe(
+        switchMap(response => {
+          if (response > 0) {
+            return this._authService.login$(logged).pipe(delay(1000));
+          } 
+          else if (response === 0) {
+            toast_msg("Ya existe este correo electronico", "warning", "top-end");
+            return throwError(() => new Error('Ya existe este correo electrónico'));
+          }
+          else {
+            return throwError(() => new Error('Error en la respuesta'));
+          }
+        })
+      ).subscribe({
         next: response => {
-          // this.router.navigate(['/home']);
-          this.router.navigate(['/auth/login']);
-          // if (response > 0) {
-          //   this.router.navigate(['/home']);
-          // }
-          // else{
-          //   console.log(response);
-          // }
-        
-        },
-        error: error => {
-          console.error(error);
+          if (response) {
+            toast_msg("Bienvenido", "success", "top-end");
+            this.router.navigate(['/home']);
+          }
+         
         }
-      }));
+      })
+    );
 
   }
 

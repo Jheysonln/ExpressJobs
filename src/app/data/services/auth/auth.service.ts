@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { IAuth, IAuthResponseToken } from 'src/app/core/interfaces/AuthInterface';
+import { errors_msg, swallLoader, toast_msg } from 'src/app/core/utilities/app';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -94,7 +95,8 @@ export class AuthService {
     let error = "Ocurrió un error en los datos";
     if (err) {
       error = err.message;
+      errors_msg(err);
     }
-    return throwError(error);
+    return throwError(() => new Error(error));
   }
 }

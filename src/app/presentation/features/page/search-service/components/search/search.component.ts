@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { setMaterialColor } from 'src/app/core/utilities/app';
+import { setMaterialColor, toastQuestion } from 'src/app/core/utilities/app';
 import { AppService } from 'src/app/data/services/app.service';
 
 @Component({
@@ -39,6 +39,10 @@ export class SearchComponent {
 
   obtenerDistritos(idProvincia:any){
     this.listaDistritos = this.distritos[idProvincia];
+  }
+
+  swalQuestion(){
+    toastQuestion();
   }
 
 

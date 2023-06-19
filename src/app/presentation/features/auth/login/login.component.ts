@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/data/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { delay, Subscription } from 'rxjs';
 import { IAuth } from 'src/app/core/interfaces/AuthInterface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import{ GlobalConstants } from '../../../../common/global-constants';
+import { swallLoader, toastQuestion, toast_msg } from 'src/app/core/utilities/app';
 
 @Component({
   selector: 'app-login',
@@ -125,19 +126,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       email: this.loguinForm.get('email')?.value,
       password: this.loguinForm.get('password')?.value,
     };
-
+    swallLoader();
     this.subscription?.add(
-      this._authService.login$(login).subscribe({
+      this._authService.login$(login).pipe(delay(1000)).subscribe({
         next: response => {
-          if (response) {
+          if(response){
+            toast_msg("Bienvenido", "success", "top-end");
             this.router.navigate(['/home']);
           }
-          console.log(response);
-        },
-        error: error => {
-          console.error(error);
         }
-      }));
+      })
+    );
   }
 
   getErrorMessaje(field: string, length: number): string {
@@ -162,5 +161,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     }
     return message;
+  }
+
+  swalQuestion(){
+    toastQuestion();
+  }
+
+  swalLoader(){
+    setTimeout(()=>  swallLoader(),1000);
   }
 }

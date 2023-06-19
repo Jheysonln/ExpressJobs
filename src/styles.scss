@@ -1,7 +1,6 @@
 @import './assets/sass/app.scss';
 // @import '../node_modules/sweetalert2/src/sweetalert2.scss';
-// @import '@sweetalert2/theme-dark/dark.scss';
-// @import '@sweetalert2/theme-material-ui/material-ui.scss';
+//  @import '@sweetalert2/theme-dark/dark.scss';
 @import 'animate.css';
 
 html,
@@ -22,11 +21,3 @@ body {
 }
 
 
-.mat-mdc-progress-bar {
-  height: 10px;
-  border-radius: 10px;
-}
-
-.mdc-linear-progress__bar-inner {
-  border-top-width: 10px !important;
-}
