@@ -1,1 +1,144 @@
-<p>maintenance-users works!</p>
+<div style="text-align: center;">
+
+    <div class="col-12">
+            <mat-card class="col w-100 mb-3">
+                <mat-card-content>
+                    <div class="container-fluid  pt-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Nombre"
+                                        autocomplete="off" value={{persona.nom_usuario}} [(ngModel)]="persona.nom_usuario">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Apellido</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Apellido"
+                                        autocomplete="off" value={{persona.ape_usuario}} [(ngModel)]="persona.ape_usuario">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Correo Electronico"
+                                        autocomplete="off" name="nombreForm" minlength="5" maxlength="50" textOnly
+                                        required value={{persona.correo_usuario}} [(ngModel)]="persona.correo_usuario">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Teléfono</mat-label>
+                                    <input matInput value={{persona.telefono_usuario}} [(ngModel)]="persona.telefono_usuario">
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100" >
+                                    <mat-label>Departamento</mat-label>
+                                    <mat-select [(value)]="persona.id_Depa" (selectionChange)="obtenerProvincias($event.value)">
+                                        
+                                        <mat-option *ngFor="let departamento of listaDepartamentos" [value]="departamento.id_Depa">
+                                            {{departamento.nom_departamento}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Provincia</mat-label>
+                                    <mat-select [(value)]="persona.id_provincia" (selectionChange)="obtenerDistritos($event.value)">
+                                        <mat-option *ngFor="let provincia of listaProvincias" [value]="provincia.id_provincia">
+                                            {{provincia.nom_provincia}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Distrito</mat-label>
+                                    <mat-select [(value)]="persona.id_dist">
+                                        <mat-option *ngFor="let distrito of listaDistritos" [value]="distrito.id_dist">
+                                            {{distrito.nom_distrito}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Nro Documento</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su DNI"
+                                        autocomplete="off" name="nombreForm" minlength="5" maxlength="50" textOnly
+                                        required value={{persona.num_documento}} [(ngModel)]="persona.num_documento">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Contraseña" autocomplete="off"
+                                        maxlength="50" required value={{persona.password_usuario}} [(ngModel)]="persona.password_usuario">
+                                </mat-form-field>
+                            </div>
+                            
+                            <div class="col-sm-12 col-md-3">
+                                <mat-form-field appearance="outline" class="mb-3 w-100">
+                                    <mat-label>Dirección</mat-label>
+                                    <input matInput type="text" placeholder="Ingrese su Direccion" autocomplete="off"
+                                        maxlength="50" required value={{persona.direc_usuario}} [(ngModel)]="persona.direc_usuario">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-12 col-md-3">
+                                <div class="avatar-edit">
+                                    <input type='file' accept=".png, .jpg, .jpeg" (change)="uploadFile($event)"/>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div [style.backgroundImage]="'url('+ imageUrl +')'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="Confirmar()" class="btn btn-info">Confirmar</button>
+                </mat-card-content>
+            </mat-card>
+
+                
+  
+        </div>
+
+    <div class="card">
+
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>EMAIL</th>
+                        <th>NRO DOCUMENTO</th>
+                        <th>ACCIONES</th>
+                    </tr>    
+                </thead>
+                <tbody>
+                    <tr *ngFor="let persona of personas" class="text-center">
+                        <td>{{persona.id_usuario}}</td>
+                        <td>{{persona.nom_usuario}}</td>
+                        <td>{{persona.correo_usuario}}</td>
+                        <td>{{persona.num_documento}}</td>
+                        <td>
+                            <button
+                            class="btn btn-warning" [routerLink]="['/profile']" [queryParams]=
+                            "{idUser: persona.id_usuario}">Editar</button>
+                            <button (click)="Eliminar(persona.id_usuario)" class="btn btn-danger" style="margin-left: 10px;">Suprimir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  <hr>
+  <router-outlet></router-outlet>
+  

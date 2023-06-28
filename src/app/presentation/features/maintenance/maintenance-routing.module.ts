@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'users',
-    data: { breadcrumb: 'Maintenance Users' } ,
+    data: { breadcrumb: 'Mantenimiento de usuarios' } ,
     loadChildren: () => import('./maintenance-users/maintenance-users.module').then(
       (m) => m.MaintenanceUsersModule
     )
